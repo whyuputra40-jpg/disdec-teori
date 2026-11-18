@@ -1,0 +1,136 @@
+MATERI MINGGU KE 4:  Konsistensi dan Replikasi pada
+Sistem Terdistribusi
+
+AI YANG SAYA NGUNAKAN: GEMINI AI
+
+PROMPT:
+Saya akan memberikan sebuah file PowerPoint (PPT/PPTX) yang berisi materi perkuliahan. Tugas kamu adalah merangkum seluruh isi PPT tersebut menjadi catatan belajar yang lengkap, sistematis, dan mudah dipahami.
+
+Ikuti ketentuan berikut:
+
+**1. Kelengkapan Materi**
+- Baca dan pahami seluruh slide dari awal hingga akhir.
+- Jangan melewatkan materi, konsep, definisi, maupun pembahasan penting.
+- Pertahankan urutan pembahasan sesuai susunan slide.
+- Jangan menambahkan informasi yang tidak terdapat dalam PPT, kecuali untuk memperjelas penjelasan.
+
+**2. Penyusunan Rangkuman**
+- Buat judul utama dan subjudul berdasarkan topik pembahasan.
+- Jelaskan setiap materi menggunakan bahasa Indonesia yang sederhana dan mudah dipahami.
+- Gunakan poin-poin untuk mempermudah proses belajar.
+- Sertakan definisi, fungsi, tujuan, karakteristik, kelebihan, kekurangan, dan contoh apabila terdapat dalam PPT.
+- Jika terdapat istilah teknis, berikan penjelasan singkat agar mudah dimengerti.
+- Jika terdapat tahapan atau proses, jelaskan secara berurutan.
+
+**3. Rumus, Tabel, dan Gambar**
+- Pertahankan seluruh rumus penting beserta keterangannya.
+- Jelaskan fungsi tabel, diagram, grafik, dan ilustrasi yang terdapat dalam PPT.
+- Jika terdapat contoh perhitungan, sertakan langkah-langkah pengerjaannya.
+- Jangan menghilangkan informasi penting yang disajikan dalam bentuk visual.
+
+**4. Gaya Penulisan**
+- Gunakan bahasa mahasiswa yang formal tetapi tetap sederhana.
+- Hindari penjelasan yang terlalu panjang dan bertele-tele.
+- Jangan membuat rangkuman terlalu singkat sehingga kehilangan inti materi.
+- Gunakan format yang rapi agar mudah disalin ke Microsoft Word atau buku catatan.
+- Hindari pengulangan pembahasan yang sama.
+
+**5. Bagian Akhir**
+Tambahkan:
+- Kesimpulan keseluruhan materi.
+- Daftar istilah penting beserta artinya.
+- Poin-poin materi yang wajib dipahami atau diingat untuk persiapan ujian.
+
+**6. Pemeriksaan Akhir**
+Sebelum memberikan hasil, pastikan seluruh slide telah tercakup, tidak ada konsep penting yang terlewat, dan penjelasan tetap sesuai dengan isi PPT.
+
+Berikan hasil rangkuman secara berurutan dari slide pertama hingga terakhir.
+
+MATERI:
+Catatan Belajar: Konsistensi dan Replikasi pada Sistem Terdistribusi
+
+1. Pengertian dan Pentingnya Konsistensi
+•	Definisi Konsistensi: Jaminan bahwa semua node (komputer/server) di dalam sistem memiliki data yang sama atau tampak sama pada waktu tertentu, meskipun data tersebut tersebar di berbagai lokasi fisik dan dapat diubah secara bersamaan oleh proses yang berbeda.
+•	Mengapa Konsistensi Penting? Tanpa konsistensi, pengguna dapat melihat versi data yang berbeda tergantung pada node tempat mereka membaca.
+o	Contoh Kasus Perbankan: Nasabah mentransfer uang dari Rekening A ke B. Jika Server 1 sudah mengurangi saldo A tetapi Server 2 belum menambah saldo B, maka sistem berada dalam kondisi tidak konsisten dan nasabah gagal bertransaksi.
+•	Tujuan Utama: Memastikan pengguna selalu melihat data yang benar, valid, dan up-to-date di tengah potensi perbedaan data antar node.
+
+2. Teorema CAP (Brewer's Theorem)
+Teorema CAP menyatakan bahwa dalam sebuah sistem data terdistribusi, kita hanya dapat memilih dua dari tiga jaminan berikut secara bersamaan:
+1.	Consistency (Konsistensi): Semua node melihat data yang sama persis pada waktu yang bersamaan.
+2.	Availability (Ketersediaan): Setiap permintaan (request) dari klien selalu menerima respons (non-error), meskipun ada node yang gagal.
+3.	Partition Tolerance (Toleransi Partisi): Sistem tetap dapat berjalan meskipun terjadi kegagalan komunikasi atau pemutusan jaringan (partition) antar node.
+•	Realita Lapisan Jaringan: Partisi jaringan adalah hal yang wajar dan pasti terjadi, sehingga sistem harus memilih apakah ingin beroperasi sebagai AP (mengorbankan konsistensi demi ketersediaan) atau CP (mengorbankan ketersediaan demi konsistensi data stok/transaksi).
+
+3. Model Konsistensi
+Model konsistensi adalah aturan atau jaminan tentang bagaimana dan kapan perubahan data terlihat oleh node atau klien lain. Dari tingkat terkuat hingga terlemah, model konsistensi meliputi:
+1.	Linearizability: Varian terkuat dari strong consistency. Operasi tampak dilakukan secara atomik dan langsung secara global, membuat sistem terdistribusi tampak seperti satu node tunggal. Digunakan pada sistem seperti etcd, ZooKeeper, dan Spanner. Contoh: Pengecekan keunikan username agar tidak ada yang mendaftar bersamaan.
+2.	Sequential Consistency: Semua operasi tampak dieksekusi dalam urutan yang sama oleh semua node, meski tidak harus secara real-time. Contoh: Urutan posting di media sosial yang dilihat sama oleh semua pengguna meski ada delay.
+3.	Causal Consistency: Operasi yang memiliki hubungan sebab-akibat (causal) harus dijaga urutannya oleh semua node, sementara operasi yang tidak berhubungan bisa dilihat dalam urutan berbeda. Contoh: Komentar atau reaksi tidak boleh muncul sebelum postingan utamanya ada.
+4.	Read-Your-Writes Consistency: Setelah pengguna menulis data, pembacaan berikutnya oleh pengguna yang sama dijamin melihat hasil tulisannya sendiri. Contoh: Pesan yang dikirim di aplikasi chat langsung muncul di layar pengirim.
+5.	Monotonic Read Consistency: Jika pengguna membaca data versi tertentu, pembacaan berikutnya tidak akan mendapatkan versi data yang lebih lama (mundur) dari yang sudah pernah dilihatnya. Contoh: Timeline media sosial tidak kembali ke postingan lama setelah disegarkan (refresh).
+6.	Eventual Consistency: Tidak menjamin data langsung sama di semua node, tetapi pada akhirnya data akan sama jika tidak ada pembaruan (update) lagi dalam jangka waktu tertentu. Sistem ini mendukung ketersediaan tinggi dan dikenal melalui konsep BASE (Basically Available, Soft-state, Eventual consistency). Contoh: Amazon DynamoDB dan Apache Cassandra.
+
+4. Trade-Off Antara Latensi dan Konsistensi
+•	Konsistensi Tinggi (Strong Consistency) $\to$ Latensi Tinggi: Sistem harus menunggu sinkronisasi lintas jaringan antar node selesai terlebih dahulu sebelum memberikan respons ke pengguna, sehingga data akurat tetapi respons lambat.
+•	Konsistensi Rendah (Eventual Consistency) $\to$ Latensi Rendah: Sistem langsung merespons dari node terdekat tanpa menunggu sinkronisasi penuh, sehingga respons sangat cepat tetapi ada risiko membaca data yang belum terbaru.
+
+5. Pengertian dan Tujuan Replikasi Data
+•	Definisi: Proses membuat dan memelihara salinan data yang identik di beberapa node atau server dalam sistem terdistribusi.
+•	Tujuan Replikasi:
+o	Ketersediaan (Availability): Jika satu server mati, server lain memiliki cadangan data.
+o	Kinerja (Performance): Pengguna dapat membaca data dari server terdekat.
+o	Reliabilitas (Reliability): Menurunkan risiko kehilangan data.
+o	Skalabilitas: Membagi beban baca (read load) ke banyak server.
+
+6. Jenis dan Strategi Sinkronisasi Replika
+•	Jenis Arsitektur Replikasi:
+o	Master-Slave (Primary-Secondary): Satu master menangani tulis (write) dan slave menangani baca (read). Contoh: PostgreSQL streaming replication.
+o	Multi-Master (Peer-to-Peer): Semua node dapat melakukan baca dan tulis, namun rawan konflik data. Contoh: Apache Cassandra, MongoDB, Apache Ignite.
+•	Waktu Sinkronisasi:
+o	Synchronous: Sumber menunggu seluruh replika melakukan commit data (konsistensi tertinggi, performa paling lambat).
+o	Semi-synchronous: Sumber menunggu setidaknya satu replika menerima data (keseimbangan performa dan konsistensi, digunakan MySQL).
+o	Asynchronous: Sumber langsung melakukan commit tanpa menunggu replika (performa tercepat, risiko kehilangan data tertinggi).
+•	Cara Sinkronisasi: Pull-based (replika periodik memeriksa pembaruan), Push-based (sumber aktif mengirim pembaruan via CDC/WebSockets), dan Hybrid.
+•	Penanganan Konflik (Multiple Updates):
+o	LWW (Last Write Wins): Berdasarkan timestamp terbaru.
+o	Vector Clock: Pengurutan kejadian berbasis vektor.
+o	CRDT (Conflict-free Replicated Data Types): Struktur data mandiri di tiap node yang diselesaikan secara otomatis (contoh: fungsi Max pada Yjs untuk editor kolaboratif seperti Google Docs).
+o	Operational Transformation (OT): Transformasi posisi indeks edit secara lokal (digunakan pada pengeditan teks bersama).
+
+7. Protokol Replikasi Utama
+1.	Quorum-based: Operasi write dan read dianggap berhasil jika mendapat konfirmasi dari sejumlah node tertentu. Berlaku syarat: $W (Write) + R (Read) > N (Total Node)$. Memastikan data selalu konsisten pada titik irisan node.
+2.	State Machine Replication: Memastikan beberapa node (replika) mengeksekusi urutan perintah yang sama persis dari leader untuk menjaga high-availability.
+3.	Gossip Protocol: Digunakan pada basis data seperti Apache Cassandra di mana setiap node secara acak bertukar informasi status dengan peer-nya setiap detik hingga seluruh klaster mengetahuinya.
+4.	Chain Replication: Klien menulis ke head dari rantai node, data diteruskan secara berurutan hingga tail, dan pembacaan dilakukan dari node tail.
+
+8. (Evaluasi Strategi Replikasi dan Konsistensi)
+•	Bagian ini ditambahkan untuk memperkuat analisis mendalam mengenai implikasi pemilihan strategi replikasi terhadap arsitektur sistem nyata:
+o	Dinamika Pemilihan Model Konsistensi pada Sistem Skala Industri: Pemilihan model konsistensi tidak bersifat mutlak melainkan bergantung pada kebutuhan domain aplikasi (domain-driven). Sebagai contoh, platform e-commerce besar cenderung mengadopsi eventual consistency untuk katalog produk dan keranjang belanja demi memastikan ketersediaan layanan yang tinggi (high availability) saat trafik membludak. Sebaliknya, modul pembayaran dan mutasi saldo mutlak mewajibkan model linearizable atau strong consistency untuk mencegah anomali transaksi finansial.
+o	Mitigasi Bottleneck pada Arsitektur Multi-Master: Meskipun arsitektur multi-master menghilangkan titik kegagalan tunggal (SPOF) pada sisi penulisan, kompleksitas penanganan konflik (conflict resolution) meningkat secara signifikan. Implementasi struktur data berbasis CRDT atau Vector Clocks menjadi krusial untuk memastikan konvergensi data otomatis tanpa mengandalkan intervensi manual administrator jaringan.
+
+9. Kesimpulan Keseluruhan Materi
+Konsistensi dan replikasi adalah dua elemen pilar yang saling berkaitan erat dalam merancang sistem terdistribusi yang andal. Melalui pemahaman terhadap batasan Teorema CAP, pemilihan model konsistensi yang tepat (dari Linearizability hingga Eventual Consistency), serta penerapan protokol replikasi yang efisien (Quorum, Gossip, Chain, maupun State Machine), perancang sistem dapat menyeimbangkan aspek ketersediaan, latensi, dan integritas data secara optimal.
+
+10. Daftar Istilah Penting beserta Artinya
+•	Konsistensi: Jaminan bahwa seluruh node dalam sistem memiliki data yang seragam.
+•	Teorema CAP: Prinsip batasan sistem terdistribusi (Consistency, Availability, Partition Tolerance).
+•	Linearizability: Model konsistensi terkuat yang membuat sistem terdistribusi bertindak seperti satu entitas atomik tunggal.
+•	BASE: Model desain sistem untuk eventual consistency (Basically Available, Soft-state, Eventual consistency).
+•	Replikasi Data: Proses pembuatan dan pemeliharaan salinan data di berbagai node.
+•	Quorum: Jumlah minimal node yang harus merespons agar operasi baca/tulis dianggap valid ($W + R > N$).
+•	CRDT: Struktur data khusus yang memungkinkan replikasi tanpa konflik pada arsitektur multi-master.
+•	Gossip Protocol: Protokol penyebaran informasi status antar node secara acak di dalam klaster.
+11. Poin-Poin Wajib untuk Persiapan Ujian
+1.	Pahami arti dan batasan dari ketiga elemen dalam Teorema CAP beserta contoh trade-off nya.
+2.	Kuasai perbedaan tingkat model konsistensi, khususnya perbandingan antara Strong/Linearizability dan Eventual Consistency.
+3.	Pahami konsep dasar perdagangan performa (trade-off) antara latensi dan tingkat konsistensi.
+4.	Ketahui perbedaan jenis replika (Master-Slave vs Multi-Master) serta metode waktu sinkronisasinya (Synchronous vs Asynchronous).
+5.	Pahami rumus dan simulasi cara kerja Quorum-based replication ($W + R > N$) serta 
+
+TAMBAHAN/PENYESUAIAN:
+(Evaluasi Strategi Replikasi dan Konsistensi)
+•	Bagian ini ditambahkan untuk memperkuat analisis mendalam mengenai implikasi pemilihan strategi replikasi terhadap arsitektur sistem nyata:
+o	Dinamika Pemilihan Model Konsistensi pada Sistem Skala Industri: Pemilihan model konsistensi tidak bersifat mutlak melainkan bergantung pada kebutuhan domain aplikasi (domain-driven). Sebagai contoh, platform e-commerce besar cenderung mengadopsi eventual consistency untuk katalog produk dan keranjang belanja demi memastikan ketersediaan layanan yang tinggi (high availability) saat trafik membludak. Sebaliknya, modul pembayaran dan mutasi saldo mutlak mewajibkan model linearizable atau strong consistency untuk mencegah anomali transaksi finansial.
+o	Mitigasi Bottleneck pada Arsitektur Multi-Master: Meskipun arsitektur multi-master menghilangkan titik kegagalan tunggal (SPOF) pada sisi penulisan, kompleksitas penanganan konflik (conflict resolution) meningkat secara signifikan. Implementasi struktur data berbasis CRDT atau Vector Clocks menjadi krusial untuk memastikan konvergensi data otomatis tanpa mengandalkan intervensi manual administrator jaringan.
+9. Kesimpulan Keseluruhan Materi
