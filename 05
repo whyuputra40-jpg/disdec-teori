@@ -1,0 +1,316 @@
+MATERI MINGGU KE 5:FAULT TOLERANCE
+
+AI YANG SAYA GUNAKAN:GEMINI AI
+
+PROMPT:
+Saya akan memberikan sebuah file PowerPoint (PPT/PPTX) yang berisi materi perkuliahan. Tugas kamu adalah merangkum seluruh isi PPT tersebut menjadi catatan belajar yang lengkap, sistematis, dan mudah dipahami.
+
+Ikuti ketentuan berikut:
+
+**1. Kelengkapan Materi**
+- Baca dan pahami seluruh slide dari awal hingga akhir.
+- Jangan melewatkan materi, konsep, definisi, maupun pembahasan penting.
+- Pertahankan urutan pembahasan sesuai susunan slide.
+- Jangan menambahkan informasi yang tidak terdapat dalam PPT, kecuali untuk memperjelas penjelasan.
+
+**2. Penyusunan Rangkuman**
+- Buat judul utama dan subjudul berdasarkan topik pembahasan.
+- Jelaskan setiap materi menggunakan bahasa Indonesia yang sederhana dan mudah dipahami.
+- Gunakan poin-poin untuk mempermudah proses belajar.
+- Sertakan definisi, fungsi, tujuan, karakteristik, kelebihan, kekurangan, dan contoh apabila terdapat dalam PPT.
+- Jika terdapat istilah teknis, berikan penjelasan singkat agar mudah dimengerti.
+- Jika terdapat tahapan atau proses, jelaskan secara berurutan.
+
+**3. Rumus, Tabel, dan Gambar**
+- Pertahankan seluruh rumus penting beserta keterangannya.
+- Jelaskan fungsi tabel, diagram, grafik, dan ilustrasi yang terdapat dalam PPT.
+- Jika terdapat contoh perhitungan, sertakan langkah-langkah pengerjaannya.
+- Jangan menghilangkan informasi penting yang disajikan dalam bentuk visual.
+
+**4. Gaya Penulisan**
+- Gunakan bahasa mahasiswa yang formal tetapi tetap sederhana.
+- Hindari penjelasan yang terlalu panjang dan bertele-tele.
+- Jangan membuat rangkuman terlalu singkat sehingga kehilangan inti materi.
+- Gunakan format yang rapi agar mudah disalin ke Microsoft Word atau buku catatan.
+- Hindari pengulangan pembahasan yang sama.
+
+**5. Bagian Akhir**
+Tambahkan:
+- Kesimpulan keseluruhan materi.
+- Daftar istilah penting beserta artinya.
+- Poin-poin materi yang wajib dipahami atau diingat untuk persiapan ujian.
+
+**6. Pemeriksaan Akhir**
+Sebelum memberikan hasil, pastikan seluruh slide telah tercakup, tidak ada konsep penting yang terlewat, dan penjelasan tetap sesuai dengan isi PPT.
+
+Berikan hasil rangkuman secara berurutan dari slide pertama hingga terakhir.
+
+MATERI:
+Berikut adalah rangkuman lengkap materi perkuliahan mengenai **Load Balancing Aplikasi Menggunakan Nginx** yang disusun secara sistematis berdasarkan materi presentasi:
+
+---
+
+# Catatan Belajar: Load Balancing Aplikasi Menggunakan Nginx
+
+## 1. Pengantar dan Tujuan Pembelajaran
+
+* **Posisi Materi:** Materi ini merupakan bagian dari mata kuliah **Sistem Terdistribusi dan Terdesentralisasi** dengan fokus pembahasan pada topik **Fault Tolerance**.
+
+
+* **Tujuan Utama:** Mencapai *high-availability* (ketersediaan tinggi) pada suatu aplikasi dengan cara melakukan *scaling* (penskalaan) instans aplikasi menjadi lebih dari satu serta mengonfigurasi *proxy load balancer*.
+
+
+* **Teknologi yang Digunakan:**
+* **Python ASGI Framework:** Menggunakan kerangka kerja **Blacksheep** (`[https://www.neoteroi.dev/blacksheep/](https://www.neoteroi.dev/blacksheep/)`) yang bersifat asinkron dan *non-blocking*.
+
+
+* **Containerization & Orchestration:** **Docker** dan **Docker Compose**.
+
+
+* **Load Balancer / Reverse Proxy:** **Nginx**.
+
+
+
+
+
+---
+
+## 2. Persiapan Lingkungan dan Instalasi Perangkat Lunak
+
+* **Instalasi Docker & Docker Compose:**
+* Pada sistem operasi Linux (contoh: Artix Linux), instalasi dilakukan menggunakan manajer paket bawaan (`pacman`).
+
+
+* Pada Windows, disarankan menggunakan *Docker Desktop*.
+
+
+
+
+* **Manajemen Environment Python:**
+* Disarankan menggunakan *environment manager* seperti `uv`, `micromamba`, atau `miniconda`.
+
+
+* Penggunaan alat `uv` untuk manajemen Python virtual environment:
+* Inisialisasi lingkungan virtual: `uv venv`.
+
+
+* Aktivasi lingkungan virtual: `source .venv/bin/activate`.
+
+
+* Instalasi paket inti `blacksheep` dan `blacksheep-cli`.
+
+
+
+
+
+
+
+---
+
+## 3. Pembuatan dan Pengujian Aplikasi Web Blacksheep
+
+* **Pembuatan Proyek via CLI:**
+* Perintah `blacksheep create` digunakan untuk menginisialisasi kerangka proyek dengan templat `mvc`, dokumentasi OpenAPI, dan pengaturan format TOML.
+
+
+
+
+* **Instalasi Dependensi Proyek:**
+* Menginstal paket yang tercantum pada `requirements.txt` (termasuk `uvicorn`, `pydantic`, dll.) ke dalam virtual environment.
+
+
+
+
+* **Menjalankan Server Pengembangan Lokal:**
+* Perintah `python dev.py` digunakan untuk menjalankan server lokal yang dapat diakses melalui peramban di alamat `http://localhost:44777/`.
+
+
+
+
+* **Catatan Penting Dockerfile Bawaan:**
+* Templat proyek Blacksheep secara otomatis menyediakan sebuah `Dockerfile` yang secara default mengonfigurasi aplikasi untuk berjalan pada **port 80** di dalam kontainer (bukan port pengembangan lokal 44777).
+
+
+
+
+
+---
+
+## 4. Arsitektur dan Struktur Direktori Proyek
+
+Implementasi *load balancing* ini melibatkan dua komponen utama yang dikelola dalam satu struktur direktori terpusat:
+
+1. **Aplikasi Blacksheep (`bs_app`):** Aplikasi web berbasis Python yang akan di-scale menjadi dua instans (*instances*).
+
+
+2. **Nginx Proxy (`nginx`):** Layanan *reverse proxy* yang mendistribusikan lalu lintas masuk ke instans aplikasi.
+
+
+
+Struktur file dan direktori pendukung terdiri atas:
+
+* Direktori `blacksheep_lb/` (berisi kode aplikasi dan `Dockerfile` asli).
+
+
+* Direktori `nginx/` (berisi `Dockerfile` kustom dan berkas konfigurasi `nginx.conf`).
+
+
+* Berkas `docker-compose.yml` di direktori utama.
+
+
+* Berkas opsional `env.sh` (berisi alias perintah terminal Bash untuk mempermudah eksekusi).
+
+
+
+---
+
+## 5. Konfigurasi Komponen (Dockerfile & Nginx)
+
+### A. Konfigurasi `blacksheep_lb/Dockerfile`
+
+* Menggunakan teknik *multi-stage build* dengan *base image* `python:3.14.4-slim`.
+
+
+* Tahap *builder* menginstal dependensi sistem dan pustaka Python, sementara tahap akhir menyalin hasil build untuk menjaga ukuran *image* tetap ringkas.
+
+
+* Perintah eksekusi (*CMD*) menjalankan server ASGI `uvicorn` pada alamat `0.0.0.0` di **port 80**.
+
+
+
+### B. Konfigurasi `nginx/Dockerfile`
+
+* Menggunakan *base image* resmi `nginx`.
+
+
+* Menghapus berkas konfigurasi bawaan (`default.conf`) dan menggantikannya dengan berkas konfigurasi kustom `nginx.conf`.
+
+
+
+### C. Konfigurasi `nginx/nginx.conf`
+
+* **Blok `events`:** Mengatur kapasitas koneksi pekerja (*worker connections*) sebesar `4096`.
+
+
+* **Blok `http` & `upstream`:** Mendefinisikan kelompok server penyeimbang beban dengan nama `backend` yang mengarah ke layanan `bs_app:80`.
+
+
+* **Blok `server`:** Mengatur penyiapan *listener* pada **port 80** dengan aturan `location /` yang meneruskan permintaan (*proxy_pass*) ke `http://backend`.
+
+
+
+---
+
+## 6. Konfigurasi Docker Compose dan Menjalankan Layanan
+
+* **Berkas `docker-compose.yml`:**
+* Mendefinisikan servis `bs_app` yang dibangun dari direktori `./blacksheep_lb`.
+
+
+* Mendefinisikan servis `nginx` yang bergantung pada `bs_app` (`depends_on`), menggunakan konfigurasi *build* dari `./nginx`, serta memetakan **port 80:80** ke host lokal.
+
+
+
+
+* **Skrip Alias (`env.sh`):** Berisi pintasan perintah Bash untuk efisiensi operasional:
+
+
+* `dcu`: `sudo docker-compose up --build -d --scale bs_app=2` (membangun ulang, menjalankan di latar belakang, dan menskalakan aplikasi menjadi 2 instans).
+
+
+* `dcd`: `sudo docker compose down` (menghentikan dan menghapus kontainer).
+
+
+* `dps`: Menampilkan daftar kontainer aktif beserta citranya.
+
+
+* `dcln`: Menampilkan log kontainer Nginx.
+
+
+
+
+* **Menyalakan Layanan:** Sebelum menjalankan Docker Compose, pastikan daemon Docker sudah aktif (misalnya menggunakan `sudo dinitctl start dockerd` atau `sudo systemctl start dockerd`), lalu jalankan perintah `dcu`.
+
+
+
+---
+
+## 7. Pengujian dan Verifikasi Load Balancing
+
+* **Akses Melalui Browser:** Buka alamat `http://localhost` (menggunakan port default **80**) untuk memastikan halaman utama aplikasi Blacksheep berhasil dimuat melalui Nginx.
+
+
+* **Pemeriksaan Kontainer Aktif:** Perintah `dps` akan menampilkan tiga kontainer yang berjalan, yaitu `load-balancing-nginx`, `load-balancing-bs_app-1`, dan `load-balancing-bs_app-2`.
+
+
+* **Verifikasi Distribusi Beban (*Load Distribution*):**
+* Pemeriksaan log pada masing-masing instans aplikasi (`sudo docker logs load-balancing-bs_app-1` dan `load-balancing-bs_app-2`) menunjukkan bahwa Nginx secara aktif membagi dan merutekan permintaan masuk (*request*) secara bergantian ke kedua instans aplikasi tersebut.
+
+
+
+
+* **Pembersihan Lingkungan:** Setelah selesai, seluruh kontainer dan jaringan virtual dapat dibersihkan menggunakan perintah `dcd`.
+
+
+
+---
+
+## 8. 
+
+* **Peranan Strategis *Reverse Proxy* dalam Skalabilitas Sistem:**
+* Implementasi Nginx sebagai *reverse proxy* dan *load balancer* di depan beberapa instans ASGI Blacksheep membuktikan bagaimana sistem terdistribusi mengatasi batasan performa perangkat tunggal. Dengan memisahkan lapisan penanganan jaringan (*edge routing*) dari logika aplikasi inti, sistem mampu menyerap lonjakan trafik secara dinamis tanpa mengubah kode sumber aplikasi.
+
+
+* **Kontribusi terhadap *Fault Tolerance*:**
+* Penskalan instans aplikasi menjadi lebih dari satu (`bs_app=2`) menghilangkan titik kegagalan tunggal (*Single Point of Failure*). Jika salah satu kontainer instans aplikasi mengalami gangguan atau *crash*, Nginx secara otomatis dapat mengalihkan arus permintaan ke instans yang masih aktif, sehingga ketersediaan layanan (*high-availability*) tetap terjaga dengan baik.
+
+
+
+---
+
+## 9. Kesimpulan Keseluruhan Materi
+
+Penerapan *load balancing* menggunakan Nginx dan Docker Compose pada aplikasi berbasis Python Blacksheep merupakan metode esensial dalam membangun sistem terdistribusi yang tahan banting (*fault-tolerant*) dan berskalabilitas tinggi. Melalui konfigurasi *upstream* Nginx dan penskalaan instans kontainer, beban kerja jaringan dapat didistribusikan secara merata untuk menjamin ketersediaan layanan 24/7.
+
+---
+
+## 10. Daftar Istilah Penting Beserta Artinya
+
+* **ASGI (Asynchronous Server Gateway Interface):** Standar antarmuka antara server web Python asinkron dan aplikasi web.
+* **Blacksheep:** Kerangka kerja web Python asinkron berbasis *event-driven* dan *non-blocking*.
+
+
+* **Nginx:** Perangkat lunak peladen web berkinerja tinggi yang sering digunakan sebagai *reverse proxy*, *load balancer*, dan penghenti HTTP.
+* **Load Balancing:** Teknik mendistribusikan lalu lintas jaringan atau beban komputasi secara merata ke beberapa server atau instans aplikasi.
+* **Reverse Proxy:** Peladen perantara yang meneruskan permintaan dari klien ke peladen internal di belakangnya.
+* **High-Availability:** Karakteristik sistem yang memastikan operasional tetap berjalan dan dapat diakses secara terus-menerus tanpa gangguan berarti.
+
+
+* **Docker Compose:** Alat untuk mendefinisikan dan menjalankan aplikasi Docker multi-kontainer berdasarkan berkas YAML.
+
+---
+
+## 11. Poin-Poin Wajib untuk Persiapan Ujian
+
+1. Pahami tujuan utama penggunaan *load balancing* dan hubungannya dengan konsep **Fault Tolerance** serta **High-Availability** dalam sistem terdistribusi.
+
+
+2. Ketahui fungsi dari masing-masing komponen utama dalam arsitektur praktikum: peran **Blacksheep** sebagai kerangka aplikasi, **Uvicorn** sebagai server ASGI, dan **Nginx** sebagai *load balancer*.
+
+
+3. Pahami struktur dasar berkas konfigurasi `nginx.conf`, khususnya fungsi blok `upstream` dan arahan `proxy_pass`.
+
+
+4. Pahami cara kerja perintah penskalaan pada Docker Compose (parameter `--scale bs_app=2`) dan dampaknya terhadap jumlah instans kontainer yang aktif.
+
+
+5. Ketahui cara memverifikasi berjalannya *load balancing* melalui pemeriksaan log instans aplikasi di lingkungan Docker.
+
+TAMBAHAN/PENYESUAIAN:
+* **Peranan Strategis *Reverse Proxy* dalam Skalabilitas Sistem:**
+* Implementasi Nginx sebagai *reverse proxy* dan *load balancer* di depan beberapa instans ASGI Blacksheep membuktikan bagaimana sistem terdistribusi mengatasi batasan performa perangkat tunggal. Dengan memisahkan lapisan penanganan jaringan (*edge routing*) dari logika aplikasi inti, sistem mampu menyerap lonjakan trafik secara dinamis tanpa mengubah kode sumber aplikasi.
+
+
+* **Kontribusi terhadap *Fault Tolerance*:**
+* Penskalan instans aplikasi menjadi lebih dari satu (`bs_app=2`) menghilangkan titik kegagalan tunggal (*Single Point of Failure*). Jika salah satu kontainer instans aplikasi mengalami gangguan atau *crash*, Nginx secara otomatis dapat mengalihkan arus permintaan ke instans yang masih aktif, sehingga ketersediaan layanan (*high-availability*) tetap terjaga dengan baik.
+
