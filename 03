@@ -1,0 +1,340 @@
+MATERI MINGGU KE 3: Sinkronisasi dan Koordinasi
+pada Sistem Terdistribusi
+
+PROMPT:
+Saya akan memberikan sebuah file PowerPoint (PPT/PPTX) yang berisi materi perkuliahan. Tugas kamu adalah merangkum seluruh isi PPT tersebut menjadi catatan belajar yang lengkap, sistematis, dan mudah dipahami.
+Ikuti ketentuan berikut:
+1. Kelengkapan Materi
+- Baca dan pahami seluruh slide dari awal hingga akhir.
+- Jangan melewatkan materi, konsep, definisi, maupun pembahasan penting.
+- Pertahankan urutan pembahasan sesuai susunan slide.
+- Jangan menambahkan informasi yang tidak terdapat dalam PPT, kecuali untuk memperjelas penjelasan.
+2. Penyusunan Rangkuman
+- Buat judul utama dan subjudul berdasarkan topik pembahasan.
+- Jelaskan setiap materi menggunakan bahasa Indonesia yang sederhana dan mudah dipahami.
+- Gunakan poin-poin untuk mempermudah proses belajar.
+- Sertakan definisi, fungsi, tujuan, karakteristik, kelebihan, kekurangan, dan contoh apabila terdapat dalam PPT.
+- Jika terdapat istilah teknis, berikan penjelasan singkat agar mudah dimengerti.
+- Jika terdapat tahapan atau proses, jelaskan secara berurutan.
+3. Rumus, Tabel, dan Gambar
+- Pertahankan seluruh rumus penting beserta keterangannya.
+- Jelaskan fungsi tabel, diagram, grafik, dan ilustrasi yang terdapat dalam PPT.
+- Jika terdapat contoh perhitungan, sertakan langkah-langkah pengerjaannya.
+- Jangan menghilangkan informasi penting yang disajikan dalam bentuk visual.
+4. Gaya Penulisan
+- Gunakan bahasa mahasiswa yang formal tetapi tetap sederhana.
+- Hindari penjelasan yang terlalu panjang dan bertele-tele.
+- Jangan membuat rangkuman terlalu singkat sehingga kehilangan inti materi.
+- Gunakan format yang rapi agar mudah disalin ke Microsoft Word atau buku catatan.
+- Hindari pengulangan pembahasan yang sama.
+5. Bagian Akhir
+Tambahkan:
+- Kesimpulan keseluruhan materi.
+- Daftar istilah penting beserta artinya.
+- Poin-poin materi yang wajib dipahami atau diingat untuk persiapan ujian.
+6. Pemeriksaan Akhir
+Sebelum memberikan hasil, pastikan seluruh slide telah tercakup, tidak ada konsep penting yang terlewat, dan penjelasan tetap sesuai dengan isi PPT.
+Berikan hasil rangkuman secara berurutan dari slide pertama hingga terakhir.
+
+tambahkan bagian yang perlu di sesuaikan kemudian tuliskan ulang tambahan atau bagian yang di sesuaikan dari materi
+MATERI:
+Berikut adalah rangkuman lengkap materi perkuliahan **Sinkronisasi dan Koordinasi pada Sistem Terdistribusi** (Kode: FIF25002T, 3 SKS) yang disusun secara sistematis berdasarkan slide perkuliahan, lengkap dengan bagian tambahan dan penyesuaian analitis.
+
+---
+
+# Catatan Belajar: Sinkronisasi dan Koordinasi pada Sistem Terdistribusi
+
+## 1. Pengertian dan Pentingnya Sinkronisasi
+
+* **Definisi:** Sinkronisasi adalah koordinasi proses, data, dan sumber daya di berbagai *nodes* untuk memastikan operasi yang konsisten dan andal.
+
+
+* **Tujuan Utama:** Mengatasi tantangan konsistensi data, mengelola proses konkuren, serta mencegah konflik data seperti *data race* dan *race condition*.
+
+
+* **Contoh Masalah Nyata:**
+* **E-Commerce (*Data Race*):** Produk X bersaldo 10 dibeli secara bersamaan oleh User A dan User B. Jika tanpa sinkronisasi, sistem mencatat pengurangan ganda yang keliru (hasil akhir salah).
+
+
+* **Perbankan (*Race Condition*):** Dua proses penarikan saldo bersamaan dari rekening yang sama dapat menyebabkan *double spending* atau saldo menjadi minus.
+
+
+
+
+* **Mengapa Sinkronisasi Penting?**
+* Menjaga integritas data (mencegah *data race* dan *race condition*).
+
+
+* Sinkronisasi *state* aplikasi (contoh: *multiplayer games* atau keranjang belanja web).
+
+
+* Koordinasi tugas dan pengelolaan sumber daya.
+
+
+* Memastikan mekanisme *recovery*, utilisasi efisien, *load balancing*, pencegahan *deadlock*, dan mendukung skalabilitas.
+
+
+
+
+
+### Perbandingan: Data Race vs Race Condition
+
+| Fitur / Parameter | Data Race | Race Condition |
+| --- | --- | --- |
+| **Fokus Utama** | Akses memori secara bersamaan (*concurrent memory access*).
+
+ | Urutan dan waktu eksekusi instruksi (*timing & execution sequence*).
+
+ |
+| **Level** | Rendah (*Low-level*: instrumen CPU/akses memori fisik).
+
+ | Tinggi (*High-level*: alur logika aplikasi / *business logic*).
+
+ |
+| **Syarat Terjadi** | 1. Min. 2 thread mengakses memori sama.<br>
+
+<br>2. Min. 1 akses adalah operasi *write*.<br>
+
+<br>3. Tanpa sinkronisasi (*mutex/lock*).
+
+ | Terjadi ketika kebenaran program bergantung pada urutan eksekusi yang tidak bisa diprediksi.
+
+ |
+| **Dampak Utama** | *Undefined behavior*, korupsi memori, data tidak konsisten.
+
+ | Output salah, bug logika bisnis (contoh: saldo minus, eksekusi ganda).
+
+ |
+| **Solusi** | Menggunakan *Mutex / Lock* atau tipe data *Atomic*.
+
+ | Desain ulang alur kontrol (*Atomic Check-and-Act*, *Database Transaction Lock*).
+
+ |
+
+---
+
+## 2. Tantangan dari Sinkronisasi
+
+Tantangan utama dalam menyinkronkan sistem terdistribusi meliputi:
+
+* *Network latency* dan *partitioning*.
+
+
+* Skalabilitas sistem.
+
+
+* Membangun sistem yang *fault-tolerant*.
+
+
+* Kontrol konkurensi (*concurrency control*).
+
+
+* Konsistensi data (*data consistency*).
+
+
+* Sinkronisasi waktu antar node.
+
+
+
+---
+
+## 3. Sinkronisasi Waktu Fisik
+
+* **Definisi:** Proses penyelarasan *real-time clock* (jam nyata) dari sistem terdistribusi dengan standar umum untuk memastikan kesamaan waktu yang konsisten.
+
+
+* **Standar Umum Waktu:**
+* **UTC (*Coordinated Universal Time*):** Didefinisikan oleh ITU (International Telecommunication Union) sejak 1963 untuk meminimalkan kebingungan singkatan lintas bahasa (seperti CUT vs TUC).
+
+
+* **TAI (*International Atomic Time*):** Standar waktu atom internasional yang menjadi basis UTC.
+
+
+* *Catatan:* GMT sudah tidak digunakan, sedangkan LTC (*Coordinated Lunar Time*) masih dalam pengembangan.
+
+
+
+
+* **Sumber Jam Atom (*Atomic Clock*):** Terletak di satelit GPS (*Medium Earth Orbit* oleh US Space Force), *Deep Space Atomic Clock* (NASA), *International Space Station* (ISS), serta kontrol darat (*US Naval Observatory* dan *Schriever Space Force Base*).
+
+
+
+### Protokol & Perangkat Sinkronisasi Waktu
+
+1. **NTP (*Network Time Protocol*):** Standar internet (RFC 5905) yang dikembangkan oleh David L. Mills dan rekan-rekan sejak 1985. Implementasi modern yang sangat serbaguna adalah **Chrony** (`chronyd` sebagai daemon dan `chronyc` sebagai antarmuka baris perintah).
+
+
+2. **PTP (*Precision Time Protocol*):** Standar IEEE 1588 untuk sinkronisasi waktu yang jauh lebih presisi (hingga tingkat sub-mikrodetik). Implementasinya di Linux menggunakan proyek **LinuxPTP** (`ptp4l` dan `phc2sys`), yang memerlukan dukungan perangkat keras *hardware timestamping* pada kartu jaringan (NIC).
+
+
+
+---
+
+## 4. Sinkronisasi Waktu Logis (Logical Clocks)
+
+* **Konsep:** Metode untuk menetapkan urutan sebab-akibat (*causal order of events*) berdasarkan aturan transitif tanpa bergantung pada jam fisik dunia nyata (melanjutkan konsep *Leslie Lamport*).
+
+
+* **Vector Clocks:** Menggunakan *array* berukuran tetap (sesuai jumlah proses, misal 3 proses: A, B, C dengan inisialisasi awal `[0, 0, 0]`).
+
+
+* **Aturan Main Vector Clocks:**
+* Setiap terjadi *event* lokal (internal), tambahkan nilai 1 pada indeks proses yang bersangkutan.
+
+
+* Saat mengirim pesan, proses menaikkan nilai jamnya terlebih dahulu, lalu menyertakan vektor jam tersebut ke proses penerima.
+
+
+* Saat menerima pesan, proses penerima melakukan perhitungan *element-wise maximum* antara vektor lokal dan vektor kiriman, lalu menambahkan 1 pada indeksnya sendiri.
+
+
+
+
+* **Aturan Penentuan (*Happens-Before*):**
+* Vektor A terjadi sebelum B ($A \to B$) jika semua komponen pada A $\le$ komponen pada B, dan minimal ada 1 komponen yang lebih kecil.
+
+
+* Jika tidak memenuhi syarat tersebut, maka kejadian bersifat *concurrent* (independen).
+
+
+
+
+
+---
+
+## 5. Tantangan Mutual Exclusion
+
+* **Definisi:** Prinsip dalam ilmu komputer yang memastikan hanya satu proses atau *thread* yang dapat mengakses sumber daya bersama (*shared resources*) pada satu waktu di dalam *Critical Section* (CS) untuk menjaga integritas data.
+
+
+* **Empat Prinsip Utama Mutual Exclusion:**
+1. *Mutual Exclusion*: Hanya 1 proses yang bekerja pada sumber daya bersama dalam satu waktu.
+
+
+2. *Progress*: Jika tidak ada proses di CS dan ada yang ingin masuk, maka akses harus diizinkan.
+
+
+3. *Bounded Waiting*: Tidak ada proses yang mengalami *starvation* (menunggu selamanya).
+
+
+4. *Fairness*: Permintaan dilayani secara adil sesuai urutan yang wajar.
+
+
+
+
+* **Pendekatan Solusi Algoritma:**
+1. **Centralized Algorithm:** Menggunakan satu node sebagai koordinator pengatur izin akses CS. Kelebihan: sederhana; Kekurangan: *Single Point of Failure* (SPOF) dan berpotensi menjadi *bottleneck*.
+
+
+2. **Ricart-Agrawala:** Algoritma terdistribusi penuh tanpa koordinator. Proses masuk CS jika mendapat balasan OK dari semua proses lain (membutuhkan $2 \times (N-1)$ pesan). Kelebihan: *fault-tolerant*; Kekurangan: *overhead* pesan tinggi.
+
+
+3. **Token-Based Algorithm:** Menggunakan token unik yang beredar di antara proses. Hanya proses yang memegang token yang dapat masuk CS. Kelebihan: hemat pesan (1 pesan per entri); Kekurangan: sulit mendeteksi dan memulihkan token jika hilang.
+
+
+
+
+
+---
+
+## 6. Pemilihan Koordinator (Coordinator Election)
+
+* **Fungsi:** Memilih pemimpin baru secara otomatis ketika koordinator lama gagal atau node baru bergabung, guna mengelola sumber daya, sinkronisasi, dan keputusan global.
+
+
+* **Algoritma Pemilihan:**
+* *Bully Algorithm*
+
+
+* *Ring Algorithm*
+
+
+* Algoritma berbasis konsensus seperti **Raft** atau **Paxos**.
+
+
+
+
+* **Implementasi Nyata di Industri:**
+* Apache ZooKeeper menggunakan protokol **ZAB** (*ZooKeeper Atomic Broadcast*, mirip Paxos).
+
+
+* Kubernetes menggunakan protokol **Raft** melalui *etcd*.
+
+
+
+
+
+---
+
+## 7.  (Evaluasi Teknis Protokol Sinkronisasi)
+
+* Bagian ini ditambahkan untuk memperkuat analisis teknis mengenai perbedaan mendasar antara protokol waktu fisik **NTP** dan **PTP**, serta implikasinya dalam arsitektur sistem terdistribusi modern:
+* **Perbandingan Akurasi dan Lapisan Jaringan (NTP vs PTP):** NTP beroperasi di lapisan aplikasi di atas jaringan standar (UDP) dengan tingkat akurasi mencapai orde milidetik di internet dan puluhan mikrodetik di LAN, sehingga sangat cocok untuk aplikasi umum dan layanan web terdistribusi. Sebaliknya, PTP (IEEE 1588) dirancang untuk mencapai akurasi sub-mikrodetik dengan memanfaatkan *hardware timestamping* langsung di tingkat antarmuka fisik jaringan (NIC), menjadikannya standar wajib untuk sistem yang menuntut presisi waktu ekstrem seperti jaringan telekomunikasi seluler (5G), *Time-Sensitive Networking* (TSN), dan sistem keuangan frekuensi tinggi (*High-Frequency Trading*).
+
+
+* **Signifikansi Algoritma Konsensus dalam Koordinasi:** Pemilihan koordinator dan sinkronisasi status global tidak dapat diselesaikan hanya dengan asumsi waktu yang selaras. Keberadaan algoritma konsensus modern seperti Raft dan Paxos membuktikan bahwa sistem terdistribusi harus mampu mencapai kesepakatan mutlak (*agreement*) meskipun menghadapi kegagalan jaringan parsial dan perbedaan penundaan pesan (*message delay*).
+
+
+
+---
+
+## 8. Kesimpulan Keseluruhan Materi
+
+Sinkronisasi dan koordinasi adalah pilar krusial dalam sistem terdistribusi untuk mencegah konflik data (*data race* dan *race condition*), menyelaraskan waktu fisik (melalui UTC, NTP, dan PTP) maupun waktu logis (*vector clocks*), serta mengatur akses eksklusif melalui mekanisme *mutual exclusion* dan pemilihan koordinator berbasis konsensus agar sistem tetap konsisten, andal, dan *fault-tolerant*.
+
+---
+
+## 9. Daftar Istilah Penting beserta Artinya
+
+* **Data Race:** Konflik akses memori secara bersamaan pada level rendah oleh beberapa *thread* tanpa sinkronisasi.
+
+
+* **Race Condition:** Cacat logika tingkat tinggi di mana hasil program bergantung pada urutan eksekusi waktu yang tidak bisa diprediksi.
+
+
+* **UTC (*Coordinated Universal Time*):** Standar waktu universal internasional yang dikoordinasikan oleh ITU.
+
+
+* **NTP (*Network Time Protocol*):** Protokol standar internet untuk menyinkronkan jam sistem melalui jaringan komputer.
+
+
+* **PTP (*Precision Time Protocol*):** Protokol standar IEEE 1588 untuk sinkronisasi waktu presisi tinggi berbasis perangkat keras.
+
+
+* **Vector Clocks:** Metode penomoran waktu logis berbasis vektor untuk melacak hubungan sebab-akibat (*causal order*).
+
+
+* **Critical Section:** Bagian kode program yang mengakses sumber daya bersama dan memerlukan proteksi *mutual exclusion*.
+
+
+* **Coordinator Election:** Proses pemilihan node pemimpin secara otomatis dalam jaringan terdistribusi.
+
+
+
+---
+
+## 10. Poin-Poin Wajib untuk Persiapan Ujian
+
+1. Pahami perbedaan mendasar antara **Data Race** dan **Race Condition** beserta contoh kasus dan solusinya.
+
+
+2. Ketahui perbedaan karakteristik antara sinkronisasi waktu fisik menggunakan **NTP** (*chrony*) dan **PTP** (*linuxptp* dengan dukungan *hardware timestamping*).
+
+
+3. Kuasai cara kerja **Vector Clocks** dan aturan penentuan hubungan *happens-before*.
+
+
+4. Pahami empat prinsip utama **Mutual Exclusion** serta perbandingan pendekatan algoritma (*Centralized*, *Ricart-Agrawala*, dan *Token-Based*).
+
+
+5. Hafalkan contoh nyata implementasi konsensus di industri seperti **ZAB di ZooKeeper** dan **Raft di Kubernetes (*etcd*)**.
+
+TAMBAHAKAN:
+ (Evaluasi Teknis Protokol Sinkronisasi)
+
+* Bagian ini ditambahkan untuk memperkuat analisis teknis mengenai perbedaan mendasar antara protokol waktu fisik **NTP** dan **PTP**, serta implikasinya dalam arsitektur sistem terdistribusi modern:
+* **Perbandingan Akurasi dan Lapisan Jaringan (NTP vs PTP):** NTP beroperasi di lapisan aplikasi di atas jaringan standar (UDP) dengan tingkat akurasi mencapai orde milidetik di internet dan puluhan mikrodetik di LAN, sehingga sangat cocok untuk aplikasi umum dan layanan web terdistribusi. Sebaliknya, PTP (IEEE 1588) dirancang untuk mencapai akurasi sub-mikrodetik dengan memanfaatkan *hardware timestamping* langsung di tingkat antarmuka fisik jaringan (NIC), menjadikannya standar wajib untuk sistem yang menuntut presisi waktu ekstrem seperti jaringan telekomunikasi seluler (5G), *Time-Sensitive Networking* (TSN), dan sistem keuangan frekuensi tinggi (*High-Frequency Trading*).
+
+
+* **Signifikansi Algoritma Konsensus dalam Koordinasi:** Pemilihan koordinator dan sinkronisasi status global tidak dapat diselesaikan hanya dengan asumsi waktu yang selaras. Keberadaan algoritma konsensus modern seperti Raft dan Paxos membuktikan bahwa sistem terdistribusi harus mampu mencapai kesepakatan mutlak (*agreement*) meskipun menghadapi kegagalan jaringan parsial dan perbedaan penundaan pesan (*message delay*).
+
