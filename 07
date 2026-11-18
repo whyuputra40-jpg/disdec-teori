@@ -1,0 +1,377 @@
+MATERI MINGGU KE 7;
+
+AI YANG SAYA GUNAKAN: GEMINI AI
+
+PROMPT:
+Saya akan memberikan sebuah file PowerPoint (PPT/PPTX) yang berisi materi perkuliahan. Tugas kamu adalah merangkum seluruh isi PPT tersebut menjadi catatan belajar yang lengkap, sistematis, dan mudah dipahami.
+
+Ikuti ketentuan berikut:
+
+**1. Kelengkapan Materi**
+- Baca dan pahami seluruh slide dari awal hingga akhir.
+- Jangan melewatkan materi, konsep, definisi, maupun pembahasan penting.
+- Pertahankan urutan pembahasan sesuai susunan slide.
+- Jangan menambahkan informasi yang tidak terdapat dalam PPT, kecuali untuk memperjelas penjelasan.
+
+**2. Penyusunan Rangkuman**
+- Buat judul utama dan subjudul berdasarkan topik pembahasan.
+- Jelaskan setiap materi menggunakan bahasa Indonesia yang sederhana dan mudah dipahami.
+- Gunakan poin-poin untuk mempermudah proses belajar.
+- Sertakan definisi, fungsi, tujuan, karakteristik, kelebihan, kekurangan, dan contoh apabila terdapat dalam PPT.
+- Jika terdapat istilah teknis, berikan penjelasan singkat agar mudah dimengerti.
+- Jika terdapat tahapan atau proses, jelaskan secara berurutan.
+
+**3. Rumus, Tabel, dan Gambar**
+- Pertahankan seluruh rumus penting beserta keterangannya.
+- Jelaskan fungsi tabel, diagram, grafik, dan ilustrasi yang terdapat dalam PPT.
+- Jika terdapat contoh perhitungan, sertakan langkah-langkah pengerjaannya.
+- Jangan menghilangkan informasi penting yang disajikan dalam bentuk visual.
+
+**4. Gaya Penulisan**
+- Gunakan bahasa mahasiswa yang formal tetapi tetap sederhana.
+- Hindari penjelasan yang terlalu panjang dan bertele-tele.
+- Jangan membuat rangkuman terlalu singkat sehingga kehilangan inti materi.
+- Gunakan format yang rapi agar mudah disalin ke Microsoft Word atau buku catatan.
+- Hindari pengulangan pembahasan yang sama.
+
+**5. Bagian Akhir**
+Tambahkan:
+- Kesimpulan keseluruhan materi.
+- Daftar istilah penting beserta artinya.
+- Poin-poin materi yang wajib dipahami atau diingat untuk persiapan ujian.
+
+**6. Pemeriksaan Akhir**
+Sebelum memberikan hasil, pastikan seluruh slide telah tercakup, tidak ada konsep penting yang terlewat, dan penjelasan tetap sesuai dengan isi PPT.
+
+Berikan hasil rangkuman secara berurutan dari slide pertama hingga terakhir.
+
+MATERI:
+Berikut adalah rangkuman lengkap materi perkuliahan **Cloud Computing** yang disusun secara sistematis berdasarkan slide perkuliahan, lengkap dengan bagian tambahan dan penyesuaian analitis.
+
+---
+
+# Catatan Belajar: Cloud Computing
+
+## 1. Pengertian dan Sejarah Singkat Cloud Computing
+
+* **Definisi NIST (National Institute of Standards and Technology):** *Cloud Computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction*.
+
+
+* Artinya, *cloud computing* adalah model yang memungkinkan akses jaringan yang mudah dan tersedia di mana saja (*ubiquitous*), akses *on-demand* ke sumber daya komputasi bersama (*shared pool*) yang dapat dikonfigurasi secara cepat dengan interaksi penyedia layanan yang minimal.
+
+
+
+
+* **Perbandingan Infrastruktur:**
+* *Lawan dari Cloud Computing* adalah **On-Premise** (sering disingkat *on-prem*), di mana server dikelola sendiri secara lokal.
+
+
+* Terdapat istilah lain yang jarang digunakan yaitu **Off-Premise** (*off-prem*) atau *co-location*, di mana organisasi menempatkan server fisik di penyedia *cloud computing* publik.
+
+
+
+
+* **Milestone Sejarah Penting:**
+* **1950-an:** Era *mainframe*, John McCarthy mencetuskan teori *time-sharing system*.
+
+
+* **1961:** John McCarthy memprediksi komputer akan menjadi utilitas seperti air dan listrik (*Grid Computing*).
+
+
+* **1969:** Kelahiran ARPANET.
+
+
+* **1990:** Penemuan WWW oleh Tim Berners-Lee $\rightarrow$ *Client-Server Computing*.
+
+
+* **1997:** Prof. Ramnath Chellapa (Emory University) pertama kali menggunakan istilah *Cloud Computing*.
+
+
+* **1999:** Peluncuran Salesforce.com.
+
+
+* **2002–2006:** Peluncuran AWS dan Amazon EC2.
+
+
+* **2009:** Peluncuran Google Cloud, dan seterusnya.
+
+
+
+
+* **Contoh Perusahaan Penyedia Layanan:**
+* *Global:* AWS, Google, Alibaba, Heroku, Microsoft, Oracle, IBM.
+
+
+* *Lokal (Indonesia):* Biznet Gio, Telkom Telstra, Lintasarta, DCI Indonesia.
+
+
+
+
+
+---
+
+## 2. Karakteristik Cloud Computing
+
+Berdasarkan standar NIST, terdapat 5 karakteristik utama ditambah konsep multitenancy:
+
+1. **On-demand self-service:** Pengguna dapat memperoleh sumber daya komputasi (seperti penyimpanan atau waktu server) secara otomatis dan instan tanpa interaksi manusia dengan penyedia layanan.
+
+
+2. **Broad Network Access:** Layanan *cloud* dapat diakses melalui jaringan menggunakan berbagai perangkat (smartphone, tablet, laptop) dari berbagai lokasi.
+
+
+3. **Resource Pooling:** Penyedia mengelompokkan sumber daya fisik dan virtual untuk melayani banyak pelanggan secara bersamaan.
+
+
+4. **Rapid Elasticity:** Kemampuan sistem untuk secara otomatis dan cepat menaikkan atau menurunkan sumber daya sesuai perubahan permintaan.
+
+
+5. **Measured Service:** Penggunaan sumber daya dipantau, dikendalikan, dan dilaporkan secara otomatis untuk transparansi penagihan berbasis konsumsi (*pay-per-use*).
+
+
+6. **Multitenancy:** Satu instans perangkat lunak atau keras melayani banyak pelanggan (*tenant*), di mana data dan operasi setiap *tenant* tetap terisolasi dan aman.
+
+
+
+---
+
+## 3. Model Layanan Cloud Computing
+
+Model layanan dibagi menjadi 3 kelompok besar (ditambah konsep modern XaaS):
+
+* **SaaS (Software as Service):** Ditujukan untuk pengguna akhir (*end-users*). Pengguna tinggal memakai aplikasi tanpa memelihara infrastruktur.
+
+
+* **PaaS (Platform as a Service):** Ditujukan untuk para pengembang (*developers*) untuk membangun aplikasi.
+
+
+* **IaaS (Infrastructure as a Service):** Ditujukan untuk arsitek jaringan/infrastruktur (*network/infrastructure architect*). Pengguna mengontrol sistem operasi, penyimpanan, dan jaringan virtual.
+
+
+* **XaaS (Everything as a Service):** Istilah modern di mana segala bentuk layanan disediakan secara *on-demand* melalui *cloud*.
+
+
+
+---
+
+## 4. Model Deployment (Penyebaran) Cloud
+
+* **Public Cloud:** Infrastruktur disediakan untuk umum dan dikelola oleh vendor pihak ketiga.
+* **Private (On-Premise):** Infrastruktur dioperasikan secara eksklusif untuk satu organisasi tertentu.
+* **Hybrid Cloud:** Gabungan antara *public* dan *private cloud* yang memungkinkan data dan aplikasi dibagikan di antara keduanya.
+* **Community Cloud:** Infrastruktur dibagi oleh beberapa organisasi yang memiliki kepentingan atau misi serupa.
+
+
+
+---
+
+## 5. Arsitektur dan Komponen Cloud Computing
+
+Secara arsitektural, *cloud computing* dibagi menjadi dua bagian utama:
+
+* **Front End:** Berisi antarmuka pengguna (*User Interface*) yang terhubung melalui internet.
+
+
+* **Back End:** Terdiri dari berbagai komponen pendukung:
+
+
+* *Aplikasi:* Berjalan sebagai SaaS.
+
+
+* *Services:* Layanan PaaS dan IaaS.
+
+
+* *Cloud Runtime:* Lingkungan eksekusi (*execution and runtime environment*) untuk Virtual Machine.
+
+
+* *Storage:* Tempat penyimpanan data.
+
+
+* *Infrastructure:* Mencakup *Hypervisor* (virtual machine monitor), *management software* milik provider, *deployment tools* DevOps, jaringan (*network*), server, serta perangkat keamanan (*security-related tools*).
+
+
+* *Management & Security:* Sistem pengelolaan dan keamanan yang membungkus seluruh layanan *back-end*.
+
+
+
+
+
+---
+
+## 6. Scalability dan Redundancy
+
+* **Skalabilitas (Scalability):** Kemampuan sistem untuk menangani penurunan atau kenaikan kebutuhan sumber daya secara statis. Berbeda dengan elastisitas yang bersifat dinamis.
+
+
+* *Area penerapan:* Disk I/O, Memory, Network I/O, dan CPU.
+
+
+* *Fitur kunci:* Ukuran perubahan signifikan (*sizeable difference*), pertumbuhan mengikuti organisasi (*grow or shrink*), kecepatan eksekusi, serta tanpa gangguan (*non-disruptive* / tanpa *downtime*).
+
+
+* *Tipe Skalabilitas:* **Vertical Scaling** (menambah daya/spesifikasi dalam satu server), **Horizontal Scaling** (menambah jumlah server), dan **Diagonal Scaling** (gabungan vertikal lalu horizontal).
+
+
+* *Pengaturan:* Dapat dilakukan secara *Manual*, *Scheduled* (berdasarkan jadwal/karakteristik pengguna), atau *Automatic* (menggunakan *AWS Autoscaling*, *Google Load Balancing and Auto Scaling*, *Azure Autoscale*).
+
+
+
+
+* **Redundansi (Redundancy):** Kemampuan menduplikasi data, server, sistem, atau konfigurasi untuk menghindari kegagalan titik tunggal (*Single Point of Failure* / SPOF).
+
+
+* Contoh layanan: *AWS Backup* dan *Microsoft Azure Backup*.
+
+
+* Sering diimplementasikan melalui *Distributed Database Management Systems* seperti **PostgreSQL** (SQL), **Apache Cassandra** (NoSQL), serta **YugabyteDB** dan **TiDB** (NewSQL).
+
+
+
+
+
+---
+
+## 7. Virtualisasi dan Teknologi Container
+
+* **Virtualisasi (Virtualization):** Pembuatan lingkungan virtual dari berbagai sumber daya dan/atau perangkat komputasi. Teknologi utama di *cloud* yang memungkinkan skalabilitas dengan mengurangi kebutuhan perangkat keras fisik.
+
+
+* *Arsitektur Hypervisor:* Dibagi menjadi **Hosted Architecture** (hypervisor berjalan di atas *Host OS*, contoh: EMU) dan **Bare-Metal Architecture** (hypervisor berjalan langsung di atas *hardware*, contoh: *Xen Project*).
+
+
+
+
+* **Container:** Teknologi pengemasan perangkat lunak (*software packages*) yang ringan, portabel, dan konsisten yang membungkus kode beserta dependensinya. Berbeda dari VM, *container* berbagi *kernel* *Host OS* yang sama, menggunakan *Container Runtime* seperti **Docker** atau **Podman** serta *runc*.
+
+
+
+---
+
+## 8. Serverless Computing
+
+* **Pengertian:** Model eksekusi di mana penyedia layanan *cloud* mengelola alokasi dan pemerolehan server secara dinamis.
+
+
+* **Klarifikasi Istilah:** Istilah "Serverless" (*tanpa server*) sering kali mengecoh karena proses tetap mengikuti pola *client-server*, hanya saja pengelolaan server sepenuhnya diambil alih oleh *provider* secara transparan. Pengguna hanya membayar berdasarkan sumber daya komputasi yang benar-benar digunakan per detik (contoh: *Azure SQL Database Serverless*).
+
+
+
+---
+
+## 9. Cloud Native Application (CNA)
+
+* **Definisi:** Pendekatan dalam membangun dan menjalankan aplikasi yang memanfaatkan seluruh lingkungan dan fasilitas *cloud computing*, terutama elastisitas, skalabilitas, dan sifat terdistribusinya.
+
+
+* **Definisi CNCF (Cloud Native Computing Foundation):** Teknologi *cloud native* memberdayakan organisasi untuk membangun dan menjalankan aplikasi yang *scalable* di lingkungan modern (publik, privat, *hybrid*) menggunakan *containers*, *service meshes*, *microservices*, infrastruktur *immutable*, dan API deklaratif yang menghasilkan sistem *loosely-coupled*, tangguh, serta mudah diamati (*observable*).
+
+
+* **Elemen Utama CNA:**
+1. **Microservices:** Memecah aplikasi monolitik menjadi layanan-layanan kecil independen yang saling berkomunikasi via API.
+
+
+2. **Containers & Orchestration:** Menggunakan Docker untuk *engine* dan Kubernetes (K8s) untuk *orchestration*.
+
+
+3. **DevOps & CI/CD:** Budaya kolaborasi antara pengembang dan operasi yang didukung otomatisasi penuh dari integrasi hingga pengiriman (*delivery*) perangkat lunak.
+
+
+4. **Teknologi Pendukung:** Layanan seperti *CoreDNS* untuk *name service*, *etcd*, dan lain-lain.
+
+
+
+
+* **Tahapan Membangun CNA:**
+1. *Define Architecture:* Menentukan *landing zone* dan prinsip arsitektur *cloud-native*.
+
+
+2. *Define Microservices:* Memecah aplikasi menggunakan prinsip *Domain-Driven Design* (DDD).
+
+
+3. *Containerize Services:* Membungkus aplikasi dan dependensinya ke dalam unit independen.
+
+
+4. *Redesign Datastore:* Merancang penyimpanan data yang sesuai dengan kebutuhan akses baca/tulis.
+
+
+5. *Build and Deploy:* Mengadopsi praktik DevOps dan *pipeline* CI/CD.
+
+
+6. *Verify:* Menguji keandalan beban kerja dan ketahanan (*resiliency testing*).
+
+
+
+
+* **Platform Pendukung CNA:** AWS, Choreo, Google Cloud, dan Microsoft Azure.
+
+
+
+---
+
+## 10. Bagian Tambahan dan Penyesuaian Analitis
+
+* Bagian ini ditambahkan untuk memperkuat analisis mengenai tren adopsi arsitektur *cloud-native* di era komputasi modern:
+* **Dampak Arsitektur Microservices terhadap Ketahanan Sistem (*Fault Isolation*):** Berbeda dengan aplikasi monolitik tradisional di mana kegagalan pada satu modul dapat meruntuhkan seluruh sistem, pendekatan *microservices* pada *Cloud Native Application* memastikan terjadinya isolasi kegagalan (*fault isolation*). Jika satu *microservice* mengalami lonjakan trafik atau *crash*, layanan lain pada klaster tetap dapat berjalan secara mandiri, didukung oleh mekanisme *auto-scaling* dan *event bus* berbasis *publish/subscribe*.
+* **Efisiensi Sumber Daya Melalui Containerization:** Dibandingkan dengan virtualisasi tradisional berbasis Virtual Machine yang memerlukan alokasi sistem operasi penuh untuk setiap instansnya, penggunaan kontainer (*containerization*) menawarkan overhead yang sangat minimal karena berbagi *kernel* yang sama. Hal ini menjadi fondasi utama mengapa teknologi kontainerisasi sangat krusial dalam menopang efisiensi biaya operasional di lingkungan *cloud* modern.
+
+
+
+---
+
+## 11. Kesimpulan Keseluruhan Materi
+
+*Cloud computing* telah merevolusi cara organisasi merancang, membangun, dan menyebarkan infrastruktur teknologi informasi. Dengan karakteristik inti seperti *on-demand self-service*, *rapid elasticity*, dan *resource pooling*, sistem ini memberikan fleksibilitas tinggi melalui berbagai model layanan (SaaS, PaaS, IaaS) dan model *deployment*. Didukung oleh kemajuan teknologi virtualisasi, kontainer, komputasi *serverless*, serta arsitektur *Cloud Native*, organisasi dapat menghadirkan aplikasi yang berskala besar, tangguh (*fault-tolerant*), dan berkinerja tinggi secara efisien.
+
+---
+
+## 12. Daftar Istilah Penting beserta Artinya
+
+* **Cloud Computing:** Model penyediaan sumber daya komputasi secara *on-demand* melalui jaringan internet.
+
+
+* **Multitenancy:** Arsitektur di mana satu instans perangkat lunak melayani banyak pelanggan secara terisolasi.
+
+
+* **Hypervisor:** Perangkat lunak atau *firmware* yang membuat dan menjalankan mesin virtual (*Virtual Machine*).
+
+
+* **Container:** Unit perangkat lunak ringan yang membungkus kode aplikasi beserta seluruh dependensinya agar dapat berjalan secara konsisten di lingkungan apa pun.
+
+
+* **Serverless:** Model eksekusi layanan *cloud* di mana alokasi server dikelola sepenuhnya secara dinamis oleh penyedia layanan.
+
+
+* **Microservices:** Gaya arsitektur perangkat lunak yang memecah aplikasi menjadi layanan-layanan kecil independen yang berkomunikasi melalui API.
+
+
+* **CI/CD:** Rangkaian proses otomatisasi integrasi dan pengiriman perangkat lunak secara berkelanjutan.
+
+
+
+---
+
+## 13. Poin-Poin Wajib untuk Persiapan Ujian
+
+1. Pahami dan hafalkan keenam **karakteristik utama Cloud Computing** menurut NIST.
+
+
+2. Pahami perbedaan cakupan tanggung jawab antara model layanan **IaaS, PaaS, dan SaaS**.
+
+
+3. Bedakan antara tipe **Vertical Scaling** dan **Horizontal Scaling**, serta pahami konsep dasar **Redundansi** untuk mencegah *Single Point of Failure*.
+
+
+4. Pahami perbedaan mendasar antara arsitektur **Virtual Machine (berbasis Hypervisor)** dan **Container (berbasis Container Runtime seperti Docker)**.
+
+
+5. Kuasai konsep dasar **Cloud Native Application (CNA)** beserta elemen-elemen utamanya seperti *Microservices*, *Containers*, dan *CI/CD*.
+
+
+TAMBAHAN/PENYESUAIAN:
+ Bagian Tambahan dan Penyesuaian Analitis
+
+* Bagian ini ditambahkan untuk memperkuat analisis mengenai tren adopsi arsitektur *cloud-native* di era komputasi modern:
+* **Dampak Arsitektur Microservices terhadap Ketahanan Sistem (*Fault Isolation*):** Berbeda dengan aplikasi monolitik tradisional di mana kegagalan pada satu modul dapat meruntuhkan seluruh sistem, pendekatan *microservices* pada *Cloud Native Application* memastikan terjadinya isolasi kegagalan (*fault isolation*). Jika satu *microservice* mengalami lonjakan trafik atau *crash*, layanan lain pada klaster tetap dapat berjalan secara mandiri, didukung oleh mekanisme *auto-scaling* dan *event bus* berbasis *publish/subscribe*.
+* **Efisiensi Sumber Daya Melalui Containerization:** Dibandingkan dengan virtualisasi tradisional berbasis Virtual Machine yang memerlukan alokasi sistem operasi penuh untuk setiap instansnya, penggunaan kontainer (*containerization*) menawarkan overhead yang sangat minimal karena berbagi *kernel* yang sama. Hal ini menjadi fondasi utama mengapa teknologi kontainerisasi sangat krusial dalam menopang efisiensi biaya operasional di lingkungan *cloud* modern.
+
+
