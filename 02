@@ -1,0 +1,307 @@
+MATERI MINGGU 2:Proses dan Komunikasi Antar Proses
+pada Sistem Terdistribusi
+PROMPT:
+Saya akan memberikan sebuah file PowerPoint (PPT/PPTX) yang berisi materi perkuliahan. Tugas kamu adalah merangkum seluruh isi PPT tersebut menjadi catatan belajar yang lengkap, sistematis, dan mudah dipahami.
+
+Ikuti ketentuan berikut:
+
+**1. Kelengkapan Materi**
+- Baca dan pahami seluruh slide dari awal hingga akhir.
+- Jangan melewatkan materi, konsep, definisi, maupun pembahasan penting.
+- Pertahankan urutan pembahasan sesuai susunan slide.
+- Jangan menambahkan informasi yang tidak terdapat dalam PPT, kecuali untuk memperjelas penjelasan.
+
+**2. Penyusunan Rangkuman**
+- Buat judul utama dan subjudul berdasarkan topik pembahasan.
+- Jelaskan setiap materi menggunakan bahasa Indonesia yang sederhana dan mudah dipahami.
+- Gunakan poin-poin untuk mempermudah proses belajar.
+- Sertakan definisi, fungsi, tujuan, karakteristik, kelebihan, kekurangan, dan contoh apabila terdapat dalam PPT.
+- Jika terdapat istilah teknis, berikan penjelasan singkat agar mudah dimengerti.
+- Jika terdapat tahapan atau proses, jelaskan secara berurutan.
+
+**3. Rumus, Tabel, dan Gambar**
+- Pertahankan seluruh rumus penting beserta keterangannya.
+- Jelaskan fungsi tabel, diagram, grafik, dan ilustrasi yang terdapat dalam PPT.
+- Jika terdapat contoh perhitungan, sertakan langkah-langkah pengerjaannya.
+- Jangan menghilangkan informasi penting yang disajikan dalam bentuk visual.
+
+**4. Gaya Penulisan**
+- Gunakan bahasa mahasiswa yang formal tetapi tetap sederhana.
+- Hindari penjelasan yang terlalu panjang dan bertele-tele.
+- Jangan membuat rangkuman terlalu singkat sehingga kehilangan inti materi.
+- Gunakan format yang rapi agar mudah disalin ke Microsoft Word atau buku catatan.
+- Hindari pengulangan pembahasan yang sama.
+
+**5. Bagian Akhir**
+Tambahkan:
+- Kesimpulan keseluruhan materi.
+- Daftar istilah penting beserta artinya.
+- Poin-poin materi yang wajib dipahami atau diingat untuk persiapan ujian.
+
+**6. Pemeriksaan Akhir**
+Sebelum memberikan hasil, pastikan seluruh slide telah tercakup, tidak ada konsep penting yang terlewat, dan penjelasan tetap sesuai dengan isi PPT.
+
+Berikan hasil rangkuman secara berurutan dari slide pertama hingga terakhir.
+
+MATERI:
+Berikut adalah rangkuman lengkap materi perkuliahan **Proses dan Komunikasi Antar Proses pada Sistem Terdistribusi** (Kode: FIF25002T, 3 SKS) yang disusun secara sistematis berdasarkan slide perkuliahan, lengkap dengan bagian penyesuaian dan tambahan analitis di akhir materi.
+
+---
+
+# Catatan Belajar: Proses dan Komunikasi Antar Proses pada Sistem Terdistribusi
+
+## 1. Tujuan Pembelajaran
+
+* Menjelaskan konsep proses pada sistem terdistribusi.
+
+
+* Menjelaskan berbagai jenis komunikasi antar proses (*Inter-Process Communication* / IPC).
+
+
+* Menganalisis isu sinkronisasi, reliabilitas, dan keamanan pada sistem terdistribusi.
+
+
+* Mengaitkan konsep ke contoh nyata seperti *microservices*, *cloud*, maupun *distributed messaging*.
+
+
+
+---
+
+## 2. Apa Itu Proses & Manajemen Proses
+
+* **Definisi Proses:** Program yang sedang dieksekusi di dalam memori (RAM). Program di *disk* berupa kumpulan instruksi statis, yang ketika diinstansiasi akan menjadi proses di RAM dengan abstraksi *Thread* dan *Scheduler* (bagian dari sistem operasi) yang mengatur *context switch*.
+
+
+* **Manajemen Proses oleh OS:** Meliputi 3 aktivitas utama:
+1. *Process Creation*: OS membuat proses baru, mengalokasikan sumber daya (memori, file), dan menginisialisasi lingkungan eksekusi (PCB, *registers*, *stack*).
+
+
+2. *Process Migration*: Memindahkan proses yang sedang berjalan dari satu CPU/node ke node lain untuk menyeimbangkan beban kerja (*load balancing*), meningkatkan performa, atau menangani kegagalan.
+
+
+3. *Process Monitoring*: Melacak status proses, penggunaan sumber daya, dan performa (CPU, memori, jumlah proses).
+
+
+
+
+
+---
+
+## 3. Sistem Terdistribusi dan Model Komunikasi Pesan
+
+* **Konsep Dasar:** Sistem terdistribusi adalah sekumpulan komputer/node independen yang bekerja bersama sebagai satu kesatuan logis. Karena tidak ada *shared memory* antar node yang terpisah jaringan, komunikasi antar node wajib dilakukan.
+
+
+* **Jenis Komunikasi & Protokol:**
+* *Request* (permintaan layanan/data) dan *Response* (hasil/balasan).
+
+
+* *Publish* (mengirim *event/update*) dan *Subscribe* (menerima notifikasi).
+
+
+* Protokol umum: HTTP/HTTPS, gRPC, *Message Queue* (Kafka, RabbitMQ), dan DNS / *Service Discovery*.
+
+
+
+
+* **Model Komunikasi Pesan:**
+* **Langsung:** Menggunakan soket (*sockets*) berbasis IP dan port (contoh implementasi menggunakan Python `socket` API).
+
+
+* **Tidak Langsung:** Menggunakan *mailboxes* atau *message queues* (misalnya perintah *write* di Linux).
+
+
+* **Pub/Sub (Publish-Subscriber):** Pesan dikirim oleh *publisher* ke sebuah *topic* di *message broker*, lalu disalurkan ke banyak *subscriber*.
+
+
+
+
+* **Contoh Nyata:** *Multiplayer games*, aplikasi transportasi online (Gojek/Grab yang menghubungkan UI pengguna, layanan *driver*, *location tracing*, dan kalkulasi tarif), serta fitur *chat/video call* pada WhatsApp.
+
+
+
+---
+
+## 4. IPC (*Inter-Process Communication*) dalam Sistem Terdistribusi
+
+Pada dasarnya terdapat 4 jenis IPC, namun **Shared Memory** tidak cocok untuk sistem terdistribusi karena node tidak saling berbagi memori fisik. Oleh karena itu, digunakan tiga mekanisme lainnya:
+
+1. **Message Passing:** Standar utamanya adalah **MPI** (*Message Passing Interface*) dengan implementasi seperti OpenMPI atau pustaka Python `mpi4py`. Proses berkomunikasi melalui fungsi `send(Q, message)` dan `receive(P, message)`.
+
+
+2. **RPC (*Remote Procedure Call*):** Memungkinkan suatu program memanggil prosedur/fungsi yang berada di komputer lain seolah-olah memanggil fungsi lokal. Klien dan server dihubungkan melalui komponen *stub*. Contoh modernnya adalah **gRPC** yang menggunakan *Protocol Buffers* (*proto request/response*) lintas bahasa pemrograman (C++, Ruby, Android-Java).
+
+
+3. **MOM (*Message-Oriented Middleware*):** Infrastruktur yang memfasilitasi pertukaran data secara asinkron melalui pesan mandiri di dalam saluran antrean. Standar MOM meliputi XATMI, AMQP (Enterprise), HLA (IEEE 1516), MQTT (untuk perangkat dengan sumber daya terbatas/IoT), DDS, dan XMPP.
+
+
+
+---
+
+## 5. Studi Kasus: Microservices & Komunikasi Sinkron/Asinkron
+
+* **Microservices:** Arsitektur aplikasi yang dipecah menjadi layanan-layanan kecil independen, di mana masing-masing layanan memiliki basis data sendiri dan saling berkomunikasi melalui jaringan.
+
+
+* **Komunikasi Sinkron vs Asinkron:**
+* *Synchronous*: Klien mengirim permintaan (*request*) lalu menunggu respons dari server secara langsung sebelum melanjutkan pekerjaan.
+
+
+* *Asynchronous*: Klien mengirim permintaan, langsung melanjutkan pekerjaan lain (*continue working*), dan baru memproses hasilnya ketika respons diterima (*get response and do something*).
+
+
+
+
+
+---
+
+## 6. Masalah dan Protokol Komunikasi Antar Proses
+
+* **Berbagai Masalah Utama:**
+* *Reliability* (Keandalan): Diatasi dengan *acknowledgement*, transmisi ulang, dan protokol transport andal seperti TCP.
+
+
+* *Ordering* (Pengurutan): Memastikan pesan diproses secara logis menggunakan *Pipes* (FIFO), *message queues*, *shared memory*, soket, atau RPC.
+
+
+* *Security* (Keamanan): Menggunakan enkripsi dan autentikasi.
+
+
+* *Performance* (Performa): Mengoptimalkan *latency* dan *bandwidth*.
+
+
+
+
+* **Protokol Komunikasi:**
+* Lapisan dasar: TCP, UDP, HTTP.
+
+
+* Lapisan aplikasi di atas HTTP/Transport: gRPC, GraphQL, REST.
+
+
+* Evolusi Stack HTTP: HTTP/2 (menggunakan TLS di atas TCP) hingga HTTP/3 (menggunakan protokol QUIC di atas UDP).
+
+
+
+
+
+---
+
+## 7. Sinkronisasi Clock, Logical Clock, dan Koordinasi Proses
+
+* **Sinkronisasi Clock:** Setiap node memiliki jam lokal (*clock*) sendiri yang rentan bergeser (*drift*) akibat latensi jaringan dan perangkat keras. Metode sinkronisasi mencakup sinkronisasi eksternal menggunakan jam atom (menghasilkan *International Atomic Time* / TAI, GPS, UTC) serta protokol **NTP** (*Network Time Protocol*) dan **PTP** (*Precision Time Protocol* yang lebih presisi).
+
+
+* **Logical Clock (Lamport Logical Clock):**
+* Digunakan untuk mengurutkan kejadian secara logis tanpa bergantung sepenuhnya pada *real clock* yang rawan latensi.
+
+
+* Aturan Lamport Clock: Setiap ada kejadian lokal, logical clock bertambah 1. Saat mengirim pesan, angka clock disertakan. Saat menerima pesan, node mengambil nilai maksimum antara clock lokal dan clock dari pesan, lalu ditambah 1.
+
+
+* Contoh alur: *Sales Service* (clock 1) $\rightarrow$ *Product Service* (clock 2) $\rightarrow$ *Invoice Service* (clock 3).
+
+
+* Perkembangan *logical clock* selain Lamport (scalar): *Vector clocks* (Fidge & Mattern, 1988), *Plausible clocks*, *Chain Clocks*, *Interval Tree Clocks*, dan *Blum Clocks*.
+
+
+
+
+* **Koordinasi Proses:** Mekanisme agar proses independen bekerja sama tanpa konflik (*deadlock* atau *race condition*). Contoh perangkat lunak koordinasi: Apache ZooKeeper, etcd, Consul, ClickHouse Keeper, Oxia, dan KRaft.
+
+
+
+---
+
+## 8. Tantangan, Solusi, dan Current Issues
+
+* **Tantangan & Solusi:**
+* *Message loss* $\rightarrow$ Diatasi dengan *retransmission* dan *acknowledgement*.
+
+
+* *Deadlock* $\rightarrow$ Diatasi dengan *timeout* dan algoritma deteksi.
+
+
+* *Data inconsistency* $\rightarrow$ Diatasi dengan protokol konsensus (Raft, Paxos).
+
+
+* *Security* $\rightarrow$ Menggunakan SSL/TLS dan OAuth2.
+
+
+
+
+* **Current Issues (Tren Terkini):**
+* *Edge and Fog Computing*.
+
+
+* *Observability and tracing* (telemetry).
+
+
+* *Container orchestration* (Kubernetes, Docker Swarm).
+
+
+
+
+
+---
+
+## 9 (Evaluasi Diskusi Protokol)
+
+* 
+
+* **Analisis GraphQL Terhadap RPC:** GraphQL secara konseptual bukanlah RPC murni. Jika RPC berfokus pada pemanggilan fungsi atau prosedur jarak jauh (*remote procedure call*) dengan menotasikan nama prosedur dan argumennya, GraphQL adalah bahasa kueri berorientasi data (*data-driven query language*) untuk API di mana klien mendefinisikan struktur data persis yang mereka inginkan dari server dalam satu titik akhir (*endpoint*). Meskipun demikian, keduanya sama-sama menjembatani komunikasi antar sistem melalui lapisan jaringan.
+* **Analisis REST Terhadap RPC:** REST (*Representational State Transfer*) berbasis pada sumber daya (*resources* dan operasi HTTP standar seperti GET, POST, PUT, DELETE), sedangkan RPC berbasis pada aksi atau prosedur (*procedure/action-oriented*). REST berfokus pada representasi status entitas, sementara RPC berfokus pada pengeksekusian fungsi jarak jauh.
+* **Aspek Etis Telemetry (Observability):** Penggunaan *telemetry* (pengumpulan metrik, log, dan *tracing*) dalam sistem terdistribusi memicu dilema etis terkait privasi data pengguna. Meskipun krusial bagi keandalan sistem (*reliability* dan *troubleshooting*), pengumpulan data telemetri harus dibatasi secara transparan agar tidak melanggar privasi individu atau mencatat informasi sensitif tanpa izin eksplisit (*consent*).
+
+
+
+---
+
+## 10. Kesimpulan Keseluruhan Materi
+
+Proses dan komunikasi antar proses adalah fondasi utama berjalannya sistem terdistribusi. Karena ketiadaan memori bersama (*shared memory*), sistem mengandalkan mekanisme IPC khusus seperti *Message Passing*, RPC, dan MOM. Ditopang oleh protokol yang handal, manajemen sinkronisasi waktu (*logical clock*), serta koordinasi yang ketat, sistem terdistribusi mampu mengelola beban kerja berskala besar secara koheren dan tahan banting.
+
+---
+
+## 11. Daftar Istilah Penting beserta Artinya
+
+* **IPC (*Inter-Process Communication*):** Mekanisme pertukaran data antar proses, baik dalam satu mesin maupun lintas jaringan.
+* **RPC (*Remote Procedure Call*):** Teknologi pemanggilan prosedur/fungsi di komputer lain seolah-olah dijalankan secara lokal.
+
+
+* **MOM (*Message-Oriented Middleware*):** Perangkat tengah berbasis pesan yang mendukung komunikasi asinkron antar aplikasi.
+
+
+* **Lamport Logical Clock:** Algoritma penomoran logis untuk menentukan urutan kejadian secara kausal dalam sistem terdistribusi.
+
+
+* **Deadlock:** Kondisi kebuntuan saat dua atau lebih proses saling menunggu sumber daya yang sedang dikunci oleh proses lain.
+* **Telemetry:** Proses pengumpulan data otomatis (log, metrik, *traces*) untuk memantau kesehatan dan kinerja sistem.
+
+
+
+---
+
+## 12. Poin-Poin Wajib untuk Persiapan Ujian
+
+1. Pahami alasan mengapa **Shared Memory** tidak dapat diterapkan pada sistem terdistribusi.
+
+
+2. Bedakan karakteristik dan contoh dari ketiga jenis IPC utama: **Message Passing**, **RPC (gRPC)**, dan **MOM**.
+
+
+3. Kuasai konsep kerja **Lamport Logical Clock** (bagaimana nilai *clock* diperbarui saat mengirim dan menerima pesan).
+
+
+4. Ketahui perbedaan mendasar antara komunikasi **sinkron dan asinkron**.
+
+
+5. Pahami solusi penanganan masalah komunikasi seperti *message loss*, *deadlock*, dan inkonsistensi data menggunakan protokol konsensus (**Raft/Paxos**).
+
+TAMBAHAN/PENYESUAIAN:
+
+ Bagian Tambahan dan Penyesuaian Analitis (Evaluasi Diskusi Protokol)
+Bagian ini ditambahkan sebagai penyesuaian analitis untuk menjawab dan mengevaluasi topik diskusi kritis yang tercantum pada akhir materi perkuliahan terkait karakteristik protokol modern dan observabilitas:  
+Analisis GraphQL Terhadap RPC: GraphQL secara konseptual bukanlah RPC murni. Jika RPC berfokus pada pemanggilan fungsi atau prosedur jarak jauh (remote procedure call) dengan menotasikan nama prosedur dan argumennya, GraphQL adalah bahasa kueri berorientasi data (data-driven query language) untuk API di mana klien mendefinisikan struktur data persis yang mereka inginkan dari server dalam satu titik akhir (endpoint). Meskipun demikian, keduanya sama-sama menjembatani komunikasi antar sistem melalui lapisan jaringan.Analisis 
+REST Terhadap RPC: REST (Representational State Transfer) berbasis pada sumber daya (resources dan operasi HTTP standar seperti GET, POST, PUT, DELETE), sedangkan RPC berbasis pada aksi atau prosedur (procedure/action-oriented). REST berfokus pada representasi status entitas, sementara RPC berfokus pada pengeksekusian fungsi jarak jauh.
+Aspek Etis Telemetry (Observability): Penggunaan telemetry (pengumpulan metrik, log, dan tracing) dalam sistem terdistribusi memicu dilema etis terkait privasi data pengguna. Meskipun krusial bagi keandalan sistem (reliability dan troubleshooting), pengumpulan data telemetri harus dibatasi secara transparan agar tidak melanggar privasi individu atau mencatat informasi sensitif tanpa izin eksplisit (consent).
