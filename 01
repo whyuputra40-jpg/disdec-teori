@@ -1,1 +1,327 @@
+MATERI MINGGU 1:Pengenalan Sistem Terdistribusi dan Terdesentralisasi
+AI YANG SAYA GUNAKAN:GEMINI AI
+PROMPT:
+Saya akan memberikan sebuah file PowerPoint (PPT/PPTX) yang berisi materi perkuliahan. Tugas kamu adalah merangkum seluruh isi PPT tersebut menjadi catatan belajar yang lengkap, sistematis, dan mudah dipahami.
 
+Ikuti ketentuan berikut:
+
+**1. Kelengkapan Materi**
+- Baca dan pahami seluruh slide dari awal hingga akhir.
+- Jangan melewatkan materi, konsep, definisi, maupun pembahasan penting.
+- Pertahankan urutan pembahasan sesuai susunan slide.
+- Jangan menambahkan informasi yang tidak terdapat dalam PPT, kecuali untuk memperjelas penjelasan.
+
+**2. Penyusunan Rangkuman**
+- Buat judul utama dan subjudul berdasarkan topik pembahasan.
+- Jelaskan setiap materi menggunakan bahasa Indonesia yang sederhana dan mudah dipahami.
+- Gunakan poin-poin untuk mempermudah proses belajar.
+- Sertakan definisi, fungsi, tujuan, karakteristik, kelebihan, kekurangan, dan contoh apabila terdapat dalam PPT.
+- Jika terdapat istilah teknis, berikan penjelasan singkat agar mudah dimengerti.
+- Jika terdapat tahapan atau proses, jelaskan secara berurutan.
+
+**3. Rumus, Tabel, dan Gambar**
+- Pertahankan seluruh rumus penting beserta keterangannya.
+- Jelaskan fungsi tabel, diagram, grafik, dan ilustrasi yang terdapat dalam PPT.
+- Jika terdapat contoh perhitungan, sertakan langkah-langkah pengerjaannya.
+- Jangan menghilangkan informasi penting yang disajikan dalam bentuk visual.
+
+**4. Gaya Penulisan**
+- Gunakan bahasa mahasiswa yang formal tetapi tetap sederhana.
+- Hindari penjelasan yang terlalu panjang dan bertele-tele.
+- Jangan membuat rangkuman terlalu singkat sehingga kehilangan inti materi.
+- Gunakan format yang rapi agar mudah disalin ke Microsoft Word atau buku catatan.
+- Hindari pengulangan pembahasan yang sama.
+
+**5. Bagian Akhir**
+Tambahkan:
+- Kesimpulan keseluruhan materi.
+- Daftar istilah penting beserta artinya.
+- Poin-poin materi yang wajib dipahami atau diingat untuk persiapan ujian.
+
+**6. Pemeriksaan Akhir**
+Sebelum memberikan hasil, pastikan seluruh slide telah tercakup, tidak ada konsep penting yang terlewat, dan penjelasan tetap sesuai dengan isi PPT.
+
+Berikan hasil rangkuman secara berurutan dari slide pertama hingga terakhir.
+
+MATERI RANGKUMAN:
+
+## 1. Arti Penting Sistem Terdistribusi dan Terdesentralisasi
+
+* **Pertumbuhan Data & Pengguna:** Skala data dan jumlah pengguna saat ini sangat besar.
+
+
+* **Skalabilitas:** Layanan modern wajib memiliki skalabilitas agar mampu menangani lonjakan beban kerja.
+
+
+* **Fault-Tolerant:** Sistem harus tahan terhadap gangguan atau kegagalan komponen.
+
+
+* **Ketersediaan 24/7:** Performa dan ketersediaan layanan harus terjaga sepanjang waktu.
+
+
+* **Fakta Penerapan:** Tanpa sistem distribusi dan terdesentralisasi, layanan raksasa seperti Google, Netflix, dan teknologi Blockchain tidak akan mungkin ada.
+
+
+
+> **Catatan Istilah Penting:**
+> * **Skalabilitas:** Kemampuan suatu sistem, jaringan, proses, atau organisasi untuk berkembang dan menangani peningkatan beban kerja, pengguna, atau permintaan tanpa mengorbankan kinerja atau kualitas.
+> 
+> 
+> * **Sistem Fault-Tolerant:** Sistem yang memiliki kemampuan untuk tetap beroperasi secara normal meskipun terjadi kegagalan atau malfungsi pada sebagian komponennya, baik *hardware* maupun *software*.
+> 
+> 
+> 
+> 
+
+---
+
+## 2. Pengertian Sistem Terdistribusi
+
+* **Definisi:** Menurut Andrew S. Tanenbaum dan Marteen van Steen (2007), sistem terdistribusi adalah *a collection of independent computers that appears to its users as a single coherent system* (kumpulan komputer independen yang terlihat oleh penggunanya sebagai satu sistem tunggal yang koheren).
+
+
+* **Karakteristik Utama:**
+* Terdiri dari komponen-komponen independen.
+
+
+* Saling berkomunikasi melalui jaringan.
+
+
+* Menawarkan **Transparansi**: meliputi lokasi, akses, replikasi, dan kegagalan.
+
+
+
+
+
+### Karakteristik Sistem Terdistribusi (Secara Umum)
+
+* Transparansi lokasi
+
+
+* Skalabilitas
+
+
+* *Fault tolerance* (Toleransi kesalahan)
+
+
+* Kinerja tinggi
+
+
+* Heterogenitas (keberagaman perangkat/sistem)
+
+
+
+---
+
+## 3. Arsitektur Sistem Dasar
+
+Dalam membangun sistem, terdapat beberapa model arsitektur dasar yang digunakan:
+
+1. **Client-Server:** Klien (browser, mobile app, PC) mengirimkan permintaan melalui internet ke satu atau beberapa server pusat yang memproses dan memberikan respon.
+
+
+2. **Peer-to-Peer (P2P):** Setiap komputer (node) dalam jaringan memiliki kedudukan yang setara, di mana setiap node bisa bertindak sebagai klien sekaligus server bagi node lainnya (Contoh: BitTorrent, berbagai mata uang kripto seperti Bitcoin, Ethereum, Ripple, dll.).
+
+
+3. **Hybrid:** Menggabungkan elemen client-server dan peer-to-peer, sering kali menggunakan *supernodes* untuk mengelola sebagian kontrol atau komunikasi (Contoh arsitektur yang dipakai oleh aplikasi pesan seperti WhatsApp, Telegram, dan Signal).
+
+
+
+---
+
+## 4. Pengertian Sistem Terdesentralisasi
+
+* **Sentralisasi vs Desentralisasi:**
+* Sentralisasi memiliki 1 titik kontrol utama (*single point of failure*).
+
+
+* Desentralisasi mendistribusikan kontrol sehingga **tidak ada single point of failure**.
+
+
+
+
+* **Mekanisme Kerja:** Keputusan diambil secara kolektif melalui konsensus.
+
+
+* **Contoh Penerapan:** Blockchain, DNS (*Domain Name System*), dan BitTorrent.
+
+
+
+---
+
+## 5. Perbandingan: Sistem Terdistribusi vs Sistem Terdesentralisasi
+
+* **Sistem Terdistribusi:** Fokus utamanya adalah pada **pembagian beban kerja** (Contoh: Google File System, MinIO Object Storage).
+
+
+* **Sistem Terdesentralisasi:** Fokus utamanya adalah pada **pembagian kontrol** (Contoh: Blockchain).
+
+
+
+---
+
+## 6. Studi Kasus
+
+* **Studi Kasus Sistem Terdistribusi:**
+* *Google File System / HDFS*: Penyimpanan data berukuran raksasa.
+
+
+* *Apache Kafka & Apache Pulsar*: Sistem *messaging* dan *streaming* data.
+
+
+* *Netflix, Twitch, YouTube, Instagram, Threads, Facebook, TikTok*: Platform hiburan dan media sosial skala global.
+
+
+
+
+* **Studi Kasus Sistem Terdesentralisasi:**
+* *Blockchain*: Bitcoin, Ethereum, Algorand, Sui, Near, Aptos, dll.
+
+
+* *DNS (Domain Name System)*: Sistem direktori nama domain internet.
+
+
+* *BitTorrent*: Protokol berbagi file berbasis P2P.
+
+
+
+
+
+---
+
+## 7. CAP Theorem (Brewer's Theorem)
+
+Diusulkan oleh Eric Brewer pada tahun 2000. Teorema ini menyatakan bahwa dalam sebuah *distributed data store*, **tidak mungkin** mendapatkan ketiga elemen secara bersamaan (*Consistency, Availability, Partition Tolerance*), karena gangguan jaringan/partisi pasti bisa terjadi.
+
+### Tiga Pilar CAP:
+
+1. **Consistency (Konsistensi):** Setiap operasi baca mengembalikan data penulisan terbaru atau menghasilkan *error*.
+
+
+2. **Availability (Ketersediaan):** Setiap permintaan ke node yang tidak gagal akan selalu menerima respons non-*error*, meskipun datanya bukan yang paling baru.
+
+
+3. **Partition Tolerance (Toleransi Partisi):** Sistem tetap beroperasi dan berfungsi meskipun komunikasi antar node terputus atau terfragmentasi.
+
+
+
+### Trade-off Pilihan Perancang Sistem (AP vs CP):
+
+* **AP (Availability + Partition Tolerance):** Permintaan terhadap data akan selalu dilayani dengan risiko data antar node tidak sinkron (mengorbankan konsistensi sementara). **Contoh:** MongoDB.
+
+
+* **CP (Consistency + Partition Tolerance):** Permintaan data (baik *read* maupun *write*) akan ditolak jika terjadi masalah jaringan demi memastikan data tetap konsisten (mengorbankan ketersediaan). **Contoh:** Apache Cassandra.
+
+
+
+---
+
+## 8. Konsistensi Data
+
+* **Strong Consistency:** Hasil data yang dibaca dari node manapun akan **selalu sama persis**.
+
+
+* **Eventual Consistency:** Data mungkin berbeda sejenak, namun akan konsisten secara otomatis setelah beberapa waktu.
+
+
+* **Contoh Penerapan:**
+* Perbankan $\rightarrow$ Mutlak membutuhkan *strong consistency*.
+
+
+* Media Sosial $\rightarrow$ Cukup menggunakan *eventual consistency*.
+
+
+
+
+
+---
+
+## 9. Tantangan dalam Sistem Terdistribusi & Terdesentralisasi
+
+* **Latency & Throughput:**
+* *Latency*: Seberapa lama waktu yang dibutuhkan data untuk diproses.
+
+
+* *Throughput*: Seberapa banyak data/permintaan yang dapat diproses dalam satu waktu.
+
+
+
+
+* **Keamanan:** Ancaman serangan seperti DDoS dan *Sybil Attack*.
+
+
+* **Kompleksitas Manajemen Node:** Sulitnya mengelola banyak node yang saling terhubung.
+
+
+* **Governance (Tata Kelola):** Tantangan pengaturan aturan dalam sistem terdesentralisasi.
+
+
+
+> **Catatan Istilah Teknis (*Sybil Attack*):**
+> * **Sybil Attack:** Jenis serangan siber di mana penyerang membuat banyak identitas palsu (akun, node, atau pseudonim hingga ribuan) secara bersamaan untuk mendominasi pengaruh, suara, atau reputasi dalam jaringan (biasanya pada sistem P2P atau blockchain). Istilah ini diambil dari nama seorang wanita dengan gangguan identitas (*identity disorder*) dalam buku tahun 1973.
+> 
+> 
+> 
+> 
+
+---
+
+## 10. Tren Masa Depan
+
+* **Cloud-native:** Pemanfaatan teknologi seperti Kubernetes dan Docker.
+
+
+* **Edge & Fog Computing:** Komputasi yang mendekati sumber data.
+
+
+* **Web3 & DeFi:** Ekosistem internet terdesentralisasi dan keuangan terdesentralisasi.
+
+
+* **Federated Data & Learning:** Kecerdasan buatan terdistribusi (*distributed AI*).
+
+
+
+---
+
+## 11. Ringkasan Materi
+
+* **Sistem Terdistribusi** berfokus pada **berbagi beban kerja**.
+
+
+* **Sistem Terdesentralisasi** berfokus pada **berbagi kontrol**.
+
+
+* Keduanya saling terkait erat namun memiliki perbedaan mendasar pada fokus tujuannya, serta menjadi fondasi utama teknologi modern saat ini.
+
+
+
+---
+
+## 12. Daftar Istilah Penting
+
+* **Skalabilitas:** Kemampuan sistem menangani lonjakan beban tanpa menurunkan kinerja.
+
+
+* **Fault-Tolerant:** Kemampuan sistem tetap berjalan meski ada komponen yang gagal.
+
+
+* **Single Point of Failure (SPOF):** Satu titik kelemahan tunggal yang jika rusak, seluruh sistem akan mati.
+* **Konsensus:** Kesepakatan bersama antar node dalam sistem terdesentralisasi.
+* **CAP Theorem:** Teorema mengenai batasan sistem data terdistribusi (*Consistency, Availability, Partition Tolerance*).
+
+
+* **Latency:** Waktu tunda atau durasi proses suatu permintaan.
+
+
+* **Throughput:** Kapasitas jumlah data yang berhasil diproses dalam satuan waktu.
+
+
+* **Sybil Attack:** Serangan manipulasi jaringan dengan membuat ribuan identitas palsu.
+
+
+
+TAMBAHAN/PENYESUAIAN:
+
+Sebagai pengantar menuju era komputasi masa depan, sistem terdistribusi dan terdesentralisasi kini semakin mendominasi perkembangan teknologi global karena kemampuannya dalam menjawab tantangan pertumbuhan data yang masif. Transformasi dari arsitektur tradisional menuju sistem yang berbasis *cloud-native*, *edge/fog computing*, hingga jaringan Web3 dan kecerdasan buatan terfederasi menunjukkan bahwa kebutuhan akan skalabilitas dan ketahanan sistem (*fault-tolerance*) menjadi prioritas utama bagi para perancang sistem saat ini.
+
+Sebagai penutup materi, sesi diskusi dan refleksi menekankan pentingnya memahami mengapa dunia teknologi terus bergerak ke arah distribusi dan desentralisasi. Melalui pemanfaatan sehari-hari yang sangat dekat dengan kehidupan nyata—seperti layanan *streaming*, perpesanan instan, hingga infrastruktur finansial dan penyimpanan awan—pemahaman yang mendalam mengenai perbedaan konsep pembagian beban kerja dan pembagian kontrol ini menjadi landasan esensial bagi mahasiswa informatika untuk merancang solusi digital yang andal dan aman di masa depan.
