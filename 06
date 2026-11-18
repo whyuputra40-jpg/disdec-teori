@@ -1,0 +1,136 @@
+MATERI NMINGGU KE 6:Distributed File System
+
+AI YANG SAYA GUNAKAN:GEMINI AI
+PROMPT:
+Saya akan memberikan sebuah file PowerPoint (PPT/PPTX) yang berisi materi perkuliahan. Tugas kamu adalah merangkum seluruh isi PPT tersebut menjadi catatan belajar yang lengkap, sistematis, dan mudah dipahami.
+
+Ikuti ketentuan berikut:
+
+**1. Kelengkapan Materi**
+- Baca dan pahami seluruh slide dari awal hingga akhir.
+- Jangan melewatkan materi, konsep, definisi, maupun pembahasan penting.
+- Pertahankan urutan pembahasan sesuai susunan slide.
+- Jangan menambahkan informasi yang tidak terdapat dalam PPT, kecuali untuk memperjelas penjelasan.
+
+**2. Penyusunan Rangkuman**
+- Buat judul utama dan subjudul berdasarkan topik pembahasan.
+- Jelaskan setiap materi menggunakan bahasa Indonesia yang sederhana dan mudah dipahami.
+- Gunakan poin-poin untuk mempermudah proses belajar.
+- Sertakan definisi, fungsi, tujuan, karakteristik, kelebihan, kekurangan, dan contoh apabila terdapat dalam PPT.
+- Jika terdapat istilah teknis, berikan penjelasan singkat agar mudah dimengerti.
+- Jika terdapat tahapan atau proses, jelaskan secara berurutan.
+
+**3. Rumus, Tabel, dan Gambar**
+- Pertahankan seluruh rumus penting beserta keterangannya.
+- Jelaskan fungsi tabel, diagram, grafik, dan ilustrasi yang terdapat dalam PPT.
+- Jika terdapat contoh perhitungan, sertakan langkah-langkah pengerjaannya.
+- Jangan menghilangkan informasi penting yang disajikan dalam bentuk visual.
+
+**4. Gaya Penulisan**
+- Gunakan bahasa mahasiswa yang formal tetapi tetap sederhana.
+- Hindari penjelasan yang terlalu panjang dan bertele-tele.
+- Jangan membuat rangkuman terlalu singkat sehingga kehilangan inti materi.
+- Gunakan format yang rapi agar mudah disalin ke Microsoft Word atau buku catatan.
+- Hindari pengulangan pembahasan yang sama.
+
+**5. Bagian Akhir**
+Tambahkan:
+- Kesimpulan keseluruhan materi.
+- Daftar istilah penting beserta artinya.
+- Poin-poin materi yang wajib dipahami atau diingat untuk persiapan ujian.
+
+**6. Pemeriksaan Akhir**
+Sebelum memberikan hasil, pastikan seluruh slide telah tercakup, tidak ada konsep penting yang terlewat, dan penjelasan tetap sesuai dengan isi PPT.
+
+Berikan hasil rangkuman secara berurutan dari slide pertama hingga terakhir.
+
+MATERI:
+
+1. Pengertian dan Cara Kerja File System (FS) Standar
+•	Definisi File System: Metode yang digunakan oleh sistem operasi untuk mengelola dan mengatur penyimpanan file pada media penyimpan fisik seperti harddisk, SSD, atau USB flashdisk.
+•	Contoh File System Berdasarkan OS:
+o	Linux: ext4, XFS, btrfs, ReiserFS.
+o	DOS/Windows: FAT16, FAT32, NTFS.
+o	Mac: APFS (Apple File System).
+•	Cara Kerja Umum: Sistem operasi mengakses media penyimpan melalui driver file system yang dikelola oleh kernel, yang kemudian menyediakan virtual file system agar dapat diakses oleh aplikasi di user space melalui system call interface (seperti perintah read() dan write()).
+•	Hierarki File System (FHS): Standar pengaturan direktori pada sistem operasi mirip Unix (seperti /bin, /boot, /dev, /etc, /home, /var, dll.) agar tercipta interoperabilitas antar aplikasi dan alat administrasi sistem.
+
+2. Pengertian Distributed File System (DFS) & Perbandingannya
+•	Definisi DFS: Sistem abstraksi terkoordinasi dari sekumpulan media penyimpan yang tidak hanya tersebar di banyak mesin, tetapi juga menutupi kompleksitas heterogenitas, kegagalan (faults), dan konkurensi. Dari sudut pandang pengguna, sistem ini terlihat dan diakses sebagai satu media penyimpan tunggal yang terintegrasi, andal, dan berkinerja tinggi.
+•	Perbandingan Arsitektur Penyimpanan:
+o	DAS (Direct-Attached Storage): Penyimpanan fisik yang terhubung langsung ke satu komputer/server.
+o	NAS (Network-Attached Storage): Penyimpanan bersama yang terhubung melalui jaringan bersama (shared network) berbasis level file (file system) dengan manajemen yang relatif mudah.
+o	SAN (Storage Area Network): Penyimpanan bersama berkecepatan tinggi melalui jaringan berdedikasi khusus (dedicated network) berbasis level blok (block storage). Performanya sangat cepat namun mahal, biasanya digunakan untuk basis data skala besar, penyuntingan video/audio, dan virtualisasi skala besar.
+o	DFS: Berbasis abstraksi perangkat lunak yang mendistribusikan data ke banyak node, di mana secara konseptual lebih mengarah pada pendekatan DAS di setiap node namun disatukan dalam pengelolaan logis.
+
+3. Berbagai Jenis Distributed File System (DFS)
+Beberapa jenis DFS yang umum digunakan di industri meliputi:
+•	Google File System (GFS)
+•	Colossus: Penerus GFS yang digunakan pada infrastruktur YouTube, Gmail, dan Google Docs.
+•	CephFS ([https://ceph.io/en/](https://ceph.io/en/))
+•	GlusterFS ([https://www.gluster.org/](https://www.gluster.org/))
+•	HDFS (Hadoop Distributed File System) ([https://hadoop.apache.org/](https://hadoop.apache.org/))
+•	Lustre ([https://www.lustre.org/](https://www.lustre.org/))
+•	Cara Kerja Umum DFS: Menggunakan konsep Global Namespace untuk menyatukan berbagai sumber penyimpanan (baik dari pusat data lokal, lokasi terpencil, maupun public cloud seperti NFS atau SMB) ke dalam satu antarmuka terpusat bagi pengguna dan aplikasi.
+
+4. Studi Kasus HDFS (Hadoop Distributed File System)
+•	Definisi HDFS: Sistem file open-source, terdistribusi, scalable, dan fault-tolerant yang dirancang untuk menyimpan dataset berukuran sangat besar di atas perangkat keras komoditas (commodity hardware).
+•	Commodity Hardware: Perangkat keras komputer yang diproduksi secara massal, berbiaya murah, mudah dipertukarkan, dan tersedia luas dari berbagai vendor.
+•	Arsitektur HDFS:
+1.	NameNode (Master): Bertindak sebagai pengatur utama yang menyimpan metadata (nama file, lokasi replika, izin akses).
+2.	DataNode (Slaves): Node-node pekerja yang menyimpan potongan file dalam bentuk blok-blok data fisik serta menjalankan manajemen tugas (MapReduce).
+•	Mekanisme Operasi (Read/Write):
+o	Klien meminta informasi metadata ke NameNode sebelum membaca atau menulis data.
+o	Data dipecah menjadi blok-blok dan didistribusikan serta direplikasi secara otomatis ke beberapa DataNode (bahkan lintas rack berbeda) guna mencapai high-availability dan mencegah kehilangan data.
+•	Persyaratan Teknis: Membutuhkan lingkungan Java (JDK 17 untuk server, serta JDK 17 atau 21 untuk klien) serta utilitas pendukung seperti SSH dan pdsh.
+
+5. Cloud Storage dan Hubungannya dengan DFS
+•	Pengertian Cloud Storage: Layanan penyimpanan data secara online di server jarak jauh yang dikelola oleh penyedia layanan awan (cloud provider) dan dapat diakses melalui jaringan internet. Contoh: Amazon S3, Azure Blob Storage, dan Google Cloud Storage (GCS).
+•	Relasi Cloud Storage dengan DFS:
+o	Cloud storage berfungsi sebagai tempat penyimpanan fisik data mentah, sementara DFS bertindak sebagai sistem pengorganisasian dan manajemen akses filenya.
+o	Contoh Implementasi: HDFS dapat dikonfigurasi untuk menggunakan Amazon S3 sebagai penyimpanannya dengan mengatur parameter kunci akses (fs.s3a.access.key, fs.s3a.secret.key, dan endpoint) pada berkas konfigurasi core-site.xml.
+
+6. Tipe Cloud Storage dan Studi Kasus Platform Modern
+•	Tiga Tipe Utama Penyimpanan Cloud:
+1.	Block Storage: Berbasis protokol transport FC/iSCSI dan antarmuka DAS/SAN. Menawarkan latensi rendah, sangat optimal untuk data terstruktur.
+2.	File Storage: Berbasis protokol TCP/IP dengan antarmuka NFS/SMB. Cocok untuk berbagi file kinerja tinggi (file sharing).
+3.	Object Storage: Berbasis TCP/IP dengan antarmuka HTTP/REST (seperti API S3). Menawarkan kemudahan penskalaan tanpa batas (infinite scaling) serta dapat diakses melalui LAN maupun WAN.
+•	Contoh Platform dan Solusi Penyimpanan Modern:
+o	Ceph: Sistem penyimpanan terdistribusi open-source yang handal dan skalabel untuk berbagai kebutuhan perusahaan.
+o	CubeFS: Sistem penyimpanan cloud-native sumber terbuka untuk data tak terstruktur yang mendukung protokol S3, HDFS, dan POSIX secara bersamaan (sangat cocok untuk skenario Big Data, AI/LLM, serta pemisahan penyimpanan dan komputasi).
+o	RustFS: Sistem penyimpanan alternatif pengganti MinIO & S3 berkinerja tinggi berbasis bahasa Rust tanpa garbage collection (GC).
+o	SILO: Proyek fork MinIO yang dikelola oleh Pigsty, menyediakan kompatibilitas penuh dengan antarmuka S3, konsol operator, serta manajemen disk terdistribusi (erasure set).
+o	Rook: Alat manajemen penyimpanan berbasis cloud-native yang siap produksi untuk mengelola File, Block, dan Object Storage di atas platform Kubernetes.
+
+7.  (Evaluasi Integrasi Cloud-Native Storage)
+•	Bagian ini ditambahkan untuk memperkuat analisis mengenai pergeseran paradigma penyimpanan data dari sistem berkas konvensional menuju arsitektur cloud-native storage:
+o	Konvergensi Protokol Akses Data: Perkembangan sistem penyimpanan modern seperti CubeFS menunjukkan bahwa batasan antara protokol penyimpanan tradisional (seperti POSIX dan HDFS) dengan standar modern berbasis objek (S3 API) semakin melebur. Hal ini memungkinkan aplikasi analitik data besar (big data) dan kecerdasan buatan (AI/LLMs) untuk mengakses kumpulan data yang sama secara transparan tanpa memerlukan migrasi atau duplikasi fisik penyimpanan.
+o	Peranan Erasure Coding dan Replikasi dalam Keandalan Sistem: Dalam sistem DFS skala besar, penggunaan replikasi standar sering kali memakan banyak kapasitas disk. Implementasi teknik Erasure Coding (seperti yang didukung oleh CubeFS dan SILO) memberikan alternatif perlindungan data yang lebih efisien dari segi ruang penyimpanan (storage efficiency) tanpa mengorbankan tingkat ketahanan terhadap kegagalan komponen perangkat keras (fault tolerance).
+
+8. Kesimpulan Keseluruhan Materi
+Distributed File System (DFS) merupakan evolusi logis dari file system tradisional yang memungkinkan pengelolaan data terdistribusi secara transparan, andal, dan transparan bagi pengguna. Melalui arsitektur tingkat lanjut seperti HDFS (NameNode dan DataNode), integrasi erat dengan cloud storage berbasis objek, serta adopsi platform modern seperti Ceph, CubeFS, dan Rook, sistem terdistribusi mampu menangani tantangan penyimpanan data berskala masif untuk kebutuhan komputasi modern, analitik data besar, dan kecerdasan buatan.
+
+9. Daftar Istilah Penting beserta Artinya
+•	File System (FS): Metode yang digunakan sistem operasi untuk mengatur dan mengelola file pada media penyimpanan.
+•	Distributed File System (DFS): Sistem file terdistribusi yang menyatukan berbagai media penyimpan agar tampak sebagai satu kesatuan logis tunggal.
+•	DAS, NAS, SAN: Berbagai arsitektur penyimpanan data berdasarkan kedekatan koneksi dan level aksesnya (Direct-Attached, Network-Attached, Storage Area Network).
+•	Commodity Hardware: Perangkat keras komputer standar komersial yang diproduksi massal dan berbiaya murah.
+•	NameNode: Komponen master dalam arsitektur HDFS yang bertugas menyimpan seluruh informasi metadata.
+•	DataNode: Komponen slave dalam HDFS yang bertugas menyimpan blok-blok data fisik.
+•	Object Storage: Tipe penyimpanan cloud berbasis objek yang diakses melalui protokol HTTP/REST (kompatibel dengan API S3).
+•	Cloud-Native Storage: Solusi penyimpanan data yang dirancang khusus untuk berjalan secara optimal di dalam lingkungan orkestrasi kontainer modern seperti Kubernetes.
+
+10. Poin-Poin Wajib untuk Persiapan Ujian
+1.	Pahami definisi komprehensif dari Distributed File System (DFS) dan perbedaannya dengan sistem penyimpanan konvensional (DAS, NAS, dan SAN).
+2.	Ketahui komponen utama dan arsitektur kerja HDFS, khususnya peran pembagian tugas antara NameNode dan DataNode.
+3.	Pahami bentuk relasi antara Cloud Storage dan DFS (bagaimana cloud storage sebagai tempat penyimpanan data diatur operasional sistem filenya oleh DFS).
+4.	Hafalkan karakteristik dari ketiga tipe utama penyimpanan cloud: Block Storage, File Storage, dan Object Storage beserta protokol transport/antarmukanya.
+5.	Kenali contoh-contoh implementasi platform penyimpanan modern seperti Ceph, CubeFS, RustFS, SILO, dan Rook pada ekosistem cloud-native.
+
+
+
+TAMBAHAN/PENYESUAIAN:
+  (Evaluasi Integrasi Cloud-Native Storage)
+•	Bagian ini ditambahkan untuk memperkuat analisis mengenai pergeseran paradigma penyimpanan data dari sistem berkas konvensional menuju arsitektur cloud-native storage:
+o	Konvergensi Protokol Akses Data: Perkembangan sistem penyimpanan modern seperti CubeFS menunjukkan bahwa batasan antara protokol penyimpanan tradisional (seperti POSIX dan HDFS) dengan standar modern berbasis objek (S3 API) semakin melebur. Hal ini memungkinkan aplikasi analitik data besar (big data) dan kecerdasan buatan (AI/LLMs) untuk mengakses kumpulan data yang sama secara transparan tanpa memerlukan migrasi atau duplikasi fisik penyimpanan.
+o	Peranan Erasure Coding dan Replikasi dalam Keandalan Sistem: Dalam sistem DFS skala besar, penggunaan replikasi standar sering kali memakan banyak kapasitas disk. Implementasi teknik Erasure Coding (seperti yang didukung oleh CubeFS dan SILO) memberikan alternatif perlindungan data yang lebih efisien dari segi ruang penyimpanan (storage efficiency) tanpa mengorbankan tingkat ketahanan terhadap kegagalan komponen perangkat keras (fault tolerance).
